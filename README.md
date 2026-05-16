@@ -4,6 +4,8 @@
 
 [![Python](https://img.shields.io/badge/python-%3E%3D3.10-blue)]() [![Bun](https://img.shields.io/badge/bun-%3E%3D1.0-orange)]() [![License](https://img.shields.io/badge/license-MIT-green)]()
 
+> **Methodological-phasing glossary.** "Stage 2b" refers to the pre-registered 50-round extended-horizon Bertrand pricing protocol that produced the dataset in this repository, distinguishing it from the 25-round Stage 2 attempt that returned NO-GO on convergence. Stage 3 is the Schmidt Sciences–funded expansion ($n_{\text{rep}} \geq 30$, horizon $\geq 100$, $n \in \{2,3,4,5\}$). Stage 4 is cross-model replication. RFC 3161-stamped pre-registration filenames (`osf-stage2b-*`) preserve this phasing; renaming would break the cryptographic stamp chain.
+
 ## What's claimed → where to verify it
 
 - **Headline finding (Stage 2b):** convergence dynamics differ sharply between agent-count regimes — GATE-5 converges 30/30 reps in 50 rounds, GATE-2 converges 1/15. The cross-sectional-signal mechanism we initially proposed was empirically reversed by a pre-registered text-based test, and the refined per-other-agent attention-density reading survives talk-volume residualization. → see [`paper/main.pdf`](paper/main.pdf) §4–§5 and [`verification/claims-map.md`](verification/claims-map.md) rows SR-M-6, SR-M-7.
