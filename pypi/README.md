@@ -19,7 +19,7 @@ colludebench-cascade verify    # tells you to run verification/reproduce/verify-
 
 ## Why a placeholder?
 
-The canonical ColludeBench runner is implemented in TypeScript and runs on Bun (<https://bun.sh>). The TypeScript implementation is what produced the Stage 2b numerics that are RFC-3161-timestamped and Council-reviewed. A second Python implementation that re-derives the stamped numerics would, by construction, produce different floating-point results within tolerance — and any divergence would create a new line of attack on the integrity scaffold.
+The canonical ColludeBench runner is implemented in TypeScript and runs on Bun (<https://bun.sh>). The TypeScript implementation is what produced the Stage 2b numerics that are RFC-3161-timestamped and adversarially-reviewed. A second Python implementation that re-derives the stamped numerics would, by construction, produce different floating-point results within tolerance — and any divergence would create a new line of attack on the integrity scaffold.
 
 Rather than introduce that risk, this Python distribution is a thin namespace-reserve. The full Python port is scheduled as a Stage 3 deliverable, after which `colludebench-cascade` on PyPI will offer:
 

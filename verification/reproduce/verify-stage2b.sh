@@ -194,12 +194,12 @@ amber "SR-M-8 PRE-REGISTERED — Stage 3 falsification test deferred; pre-regist
 section "Cross-cutting practice claims"
 # ---------------------------------------------------------------------------
 # CC-1: stamp chain integrity (verified above)
-# CC-2: Council certificate state
+# CC-2: Review certificate state
 if [ -f "verification/council-certificates/review-certificate.md" ]; then
   if grep -q "CONDITIONAL" "verification/council-certificates/review-certificate.md"; then
-    green "CC-2 — Council certificate at CONDITIONAL with documented user-override (auditable, not approval)"
+    green "CC-2 — Review certificate at CONDITIONAL with documented user-override (auditable, not approval)"
   else
-    red "CC-2 — Council certificate not in expected CONDITIONAL state"
+    red "CC-2 — Review certificate not in expected CONDITIONAL state"
   fi
 else
   amber "CC-2 — Council certificate at verification/council-certificates/review-certificate.md"

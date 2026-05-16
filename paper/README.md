@@ -1,6 +1,6 @@
 # Paper — Stage 2b Preprint
 
-`main.pdf` is the post-iter-5 Council CONDITIONAL preprint, 29 pages.
+`main.pdf` is the post-iter-5 review CONDITIONAL preprint, 29 pages.
 
 ## Citation
 
@@ -43,5 +43,5 @@ The Stage 2b preprint is hosted in this repository at `paper/main.pdf` with the 
 - 8-entry SR-M mechanistic-claims registry at `../verification/sr-m-registry.md`
 - Click-to-verify claims map at `../verification/claims-map.md`
 - Cross-toolchain SciPy reference verifier at `../colludebench-cascade/verifiers/`
-- Council certificate (CONDITIONAL exit) at `../verification/council-certificates/review-certificate.md`
+- review certificate (CONDITIONAL exit) at `../verification/council-certificates/review-certificate.md`
 - One-script verification at `../verification/reproduce/verify-stage2b.sh`

@@ -32,7 +32,7 @@ ColludeBench is research infrastructure. The threat surface includes:
 
 ## Out of Scope
 
-- The integrity scaffold's Council pattern (named-expert adversarial review) is a methodology, not a security primitive. Disagreements with Council findings are normal scientific debate, not vulnerabilities.
+- The integrity scaffold's review pattern (structured-dimension adversarial review) is a methodology, not a security primitive. Disagreements with review findings are normal scientific debate, not vulnerabilities.
 - Reproducibility tolerance ($|\Delta| < 5 \times 10^{-3}$) is a deliberate design choice for cross-toolchain numeric reproduction. Floating-point differences within this tolerance are not vulnerabilities.
 
 ## Authorship

@@ -6,7 +6,7 @@ Thank you for your interest. ColludeBench is research infrastructure for measuri
 
 ColludeBench's authorship is fixed: **Hass Dhia, Haedar Hadi, Ahmed Dhia** (H.H.A. Applied Research Institute). External contributors are credited in the `CHANGELOG.md` and via Git commit attribution; significant new modules or experimental designs may earn co-authorship on derivative releases following a documented review by the H.H.A. team.
 
-**AI assistance is internal methodology, not authorship.** This repository is built using a multi-iteration adversarial review pattern with named-expert Council personas, RFC 3161 trusted-timestamp pre-registration, and cross-toolchain Python/SciPy reference verification. These practices are described below as the *integrity scaffold* — they are how we work, not who we are. AI co-author tags, `Co-Authored-By:` trailers, and "with assistance from" footnotes are not used in this repository's commit history, citation file, or release notes.
+**AI assistance is internal methodology, not authorship.** This repository is built using a multi-iteration adversarial review pattern with structured multi-dimensional review dimensions, RFC 3161 trusted-timestamp pre-registration, and cross-toolchain Python/SciPy reference verification. These practices are described below as the *integrity scaffold* — they are how we work, not who we are. AI co-author tags, `Co-Authored-By:` trailers, and "with assistance from" footnotes are not used in this repository's commit history, citation file, or release notes.
 
 ## Integrity Practice (Internal Methodology)
 
@@ -42,13 +42,13 @@ The TypeScript primary analyzer is independently re-implemented in Python with S
 
 The Python verifiers live at `colludebench-cascade/verifiers/`.
 
-### 4. Named-Expert Adversarial Council
+### 4. Structured Multi-Dimensional Adversarial Review
 
-Five iterations against persona panels (DataScientist + Statistician/Algorithmist, CSProfessor, Physicist, IO Domain Expert, Devil's Advocate, Methods/Reproducibility, Consistency, Writing Quality). Stage 2b's Council exited CONDITIONAL after iter-5 with documented user-override rationale; ~32 substantive findings (CRITICAL + HIGH) were applied across iterations. The certificate at `verification/council-certificates/review-certificate.md` is auditable, not a stamp of approval.
+Five iterations against review-dimension panels (statistical algorithm validity, computer-science peer-review standards, first-principles consistency, industrial-organization domain expertise, devil's-advocate stress-testing, methods and reproducibility audit, internal consistency, and writing rigor). Stage 2b's review process exited CONDITIONAL after iter-5 with documented user-override rationale; ~32 substantive findings (CRITICAL + HIGH) were applied across iterations. The certificate at `verification/council-certificates/review-certificate.md` is auditable, not a stamp of approval.
 
-## Re-Council on Transitions
+## Re-review on Transitions
 
-When work transitions across phases (Stage 2b preprint → Schmidt proposal compression; Stage 3 dataset → cross-model paper), the Council convenes again — past CLEAN does not transfer across context. This protects against residual Lakatosian rescues that would have been visible to a fresh-context reviewer but not to one anchored in prior iterations.
+When work transitions across phases (Stage 2b preprint → Schmidt proposal compression; Stage 3 dataset → cross-model paper), the review process convenes again — past CLEAN does not transfer across context. This protects against residual Lakatosian rescues that would have been visible to a fresh-context reviewer but not to one anchored in prior iterations.
 
 ## Discipline (Internal Practice)
 
@@ -68,8 +68,8 @@ These run as team-internal pre-commit verification (the canonical implementation
    - Add or update the corresponding SR-M registry entry **before** committing the analyzer change
    - RFC-3161-stamp the updated registry entry
    - Verify stamp time is strictly anterior to the analyzer-output commit time
-4. Open a PR. The PR template asks: "Is this a transition? Does it need re-Council?"
-5. The H.H.A. team reviews substantive scientific changes via the named-expert Council pattern before merge.
+4. Open a PR. The PR template asks: "Is this a transition? Does it need re-review?"
+5. The H.H.A. team reviews substantive scientific changes via the structured multi-dimensional review pattern before merge.
 
 ## Code of Conduct
 

@@ -18,7 +18,7 @@ def info() -> None:
 ColludeBench v{VERSION} — H.H.A. Applied Research Institute
 
   A pre-registered, RFC 3161-timestamped, cross-toolchain-verified,
-  adversarially-Council-reviewed benchmark for measuring multi-agent LLM
+  adversarially-stress-tested benchmark for measuring multi-agent LLM
   collusion in repeated pricing games.
 
   This Python distribution is a namespace-reserve placeholder for the

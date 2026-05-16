@@ -20,7 +20,7 @@ The rendered proposal PDF is at `PROPOSAL_DRAFT.pdf` (15 pages, the same artifac
 
 ## Authorship
 
-Per institutional attribution policy (`../CONTRIBUTING.md` §Authorship Policy), this proposal lists exactly three authors: **Hass Dhia, Haedar Hadi, Ahmed Dhia** (H.H.A. Applied Research Institute). The integrity scaffold (RFC 3161 stamps, SR-M registry, cross-toolchain SciPy verifier, named-expert Council pattern) is internal methodology, not authorship.
+Per institutional attribution policy (`../CONTRIBUTING.md` §Authorship Policy), this proposal lists exactly three authors: **Hass Dhia, Haedar Hadi, Ahmed Dhia** (H.H.A. Applied Research Institute). The integrity scaffold (RFC 3161 stamps, SR-M registry, cross-toolchain SciPy verifier, structured multi-dimensional review pattern) is internal methodology, not authorship.
 
 ## Funding institution
 

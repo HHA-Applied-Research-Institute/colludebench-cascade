@@ -19,7 +19,7 @@ LLM-agent Bertrand-pricing dynamics under controlled network and protocol manipu
 - **Pre-registration**: every analyzer specification is RFC 3161 trusted-timestamped via FreeTSA *before* the analyzer runs. Stamps at `../verification/stamps/`. Pre-registration documents at `../verification/pre-registrations/`.
 - **Mechanistic-claim registry**: every load-bearing claim has an SR-M registry entry with primary-source numeric target, falsification test path, falsification condition, and pre-committed rescope fallback. Registry at `../verification/sr-m-registry.md`.
 - **Cross-toolchain verification**: every TypeScript primary analyzer is independently re-implemented in Python with SciPy reference statistical primitives. Verifier returns `ALL CLAIMS REPRODUCE: True` across all pre-registered claim categories at `|Δ| < 5 × 10⁻³` tolerance. Verifiers at `verifiers/`.
-- **Adversarial Council**: 5 iterations against named-expert persona panels (DataScientist + Statistician/Algorithmist, CSProfessor, Physicist, IO Domain Expert, Devil's Advocate, Methods/Reproducibility, Consistency, Writing Quality). Certificate at `../verification/council-certificates/review-certificate.md`.
+- **Adversarial review**: 5 iterations against eight pre-defined methodological dimensions (statistical algorithm validity, computer-science peer-review standards, first-principles consistency, industrial-organization domain expertise, devil's-advocate stress-testing, methods and reproducibility audit, internal consistency, and writing rigor). Certificate at `../verification/council-certificates/review-certificate.md`.
 
 ## What counts as convergence
 
