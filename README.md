@@ -59,7 +59,7 @@ This work is part of the H.H.A. Applied Research Institute's submission to the S
 
 ## Authorship
 
-Per institutional attribution policy, this artifact lists exactly three authors: **Hass Dhia, Haedar Hadi, Ahmed Dhia**. The review pattern, SciPy reference verifier, RFC 3161 stamp chain, and broader integrity scaffold are described in [`CONTRIBUTING.md`](CONTRIBUTING.md) and `paper/main.pdf` §5 as the team's *internal methodology*, never as external authorship. AI assistance is not attributed in any contributor list.
+Per institutional attribution policy, this artifact lists exactly three authors: **Hass Dhia, Haedar Hadi, Ahmed Dhia**. The review pattern, SciPy reference verifier, RFC 3161 stamp chain, and broader integrity scaffold are described in [`CONTRIBUTING.md`](CONTRIBUTING.md) and `paper/main.pdf` §5 as the team's *internal methodology*, never as external authorship. Internal review tooling is not attributed in any contributor list.
 
 ## License
 

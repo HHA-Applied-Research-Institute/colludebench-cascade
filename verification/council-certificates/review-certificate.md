@@ -5,7 +5,7 @@
 **Iterations:** 5 (Council REVIEW workflow per AppliedResearch Review.md spec)
 **Final status:** CONDITIONAL — user judgment ratified
 **Convergence:** NOT PROVEN under the two-in-a-row criterion (iter-4 NOT clean + iter-5 NOT clean by formal Council standard); user override invoked per Schmidt-RFP-focus filter (preprint serves as supporting evidence to the proposal, not as standalone academic publication; remaining issues are venue-conditional polish, not RFP submission gates).
-**Reviewed by:** Across iters 1-5: Academic, Methods/Reproducibility, Devil's Advocate, Consistency, IO Domain Expert Simulator, Writing Quality (iters 1-4); plus iter-5 named-expert panel: DataScientist+StatAlgorithmist, CSProfessor, Physicist, IO Domain Expert, Devil's Advocate, Methods/Reproducibility, Consistency. Plus independent co-author Haedar 5-persona panel run between iter-4 and iter-5.
+**Reviewed by:** Across iters 1-5: academic methodology, methods-and-reproducibility audit, devil's-advocate stress-testing, internal consistency, industrial-organization domain expertise, writing rigor (iters 1-4); plus iter-5 eight-dimension review (statistical algorithm validity, computer-science peer-review standards, first-principles consistency, industrial-organization domain expertise, devil's-advocate stress-testing, methods and reproducibility audit, internal consistency, writing rigor). Plus an independent multi-dimensional review run by co-author Haedar between iter-4 and iter-5.
 **Date:** 2026-05-04
 
 ---
@@ -44,7 +44,7 @@ These are the iter-5 findings not addressed by the Q-learner-fix + SR-M-8 surgic
 - Methods/Repro: within-GATE-2 OLS sensitivity check (post-hoc, not RFC-stamped) silently mixed with stamp-chain numerics in §5.2.1 — disclosure improvement deferred to journal version
 
 ### MEDIUM deferred (~15)
-Catalog in iter-5 reviewer outputs (per-persona findings tables). All venue-conditional polish or registry/disclosure improvements. None block Schmidt RFP submission.
+Catalog in iter-5 reviewer outputs (per-dimension findings tables). All venue-conditional polish or registry/disclosure improvements. None block Schmidt RFP submission.
 
 ## Surgical fixes applied at iter-5 exit (the Stage 2b release commit + next commit)
 
@@ -72,4 +72,4 @@ Post-funding (Stage 3 + Stage 4 work), the deferred fix list above becomes the j
 
 ## Reviewer convergence consensus (qualitative across all 5 iterations + Haedar pass)
 
-All reviewer panels across all iterations agreed on a positive frame: the integrity scaffold is unusually rigorous for a Stage 2b LLM-empirical-economics pilot. RFC 3161 timestamps + cross-toolchain SciPy reference verifier + falsification tests run on own mechanism + residualization surviving the most plausible alternative + adversarial multi-iteration review with named-expert-persona Council pattern make this an evidentiarily-credible artifact for a Schmidt Sciences Trustworthy AI panel evaluation. The substantive criticisms across iterations are about repositioning, hedge density, and venue-conditional sizing — not about the underlying empirical work or the integrity practice.
+All review dimensions across all iterations agreed on a positive frame: the integrity scaffold is unusually rigorous for a Stage 2b LLM-empirical-economics pilot. RFC 3161 timestamps + cross-toolchain SciPy reference verifier + falsification tests run on own mechanism + residualization surviving the most plausible alternative + structured multi-dimensional adversarial review make this an evidentiarily-credible artifact for a Schmidt Sciences Trustworthy AI panel evaluation. The substantive criticisms across iterations are about repositioning, hedge density, and venue-conditional sizing — not about the underlying empirical work or the integrity practice.

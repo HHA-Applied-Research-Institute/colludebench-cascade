@@ -64,7 +64,7 @@ This is pre-committed to prevent post-hoc rationalization in either direction.
 
 ### Motivation
 
-Chain-of-thought reasoning-length (character count of agent reasoning text) was observed, post parent pre-registration lock, to correlate negatively with Δ_profit at the repetition level in Gate-5 2b traces (r = −0.78, n=30). The panel review identified this as a potentially publishable signature replacing a latency-based signature that is contaminated by Claude CLI subprocess overhead, subscription auth back-off, and inter-agent stagger (`pilot/runner/round-executor.ts:94-103`; see `working/literature/panel-runs/2026-04-21-hassan-latency-swap-persona-syseng.md`).
+Chain-of-thought reasoning-length (character count of agent reasoning text) was observed, post parent pre-registration lock, to correlate negatively with Δ_profit at the repetition level in Gate-5 2b traces (r = −0.78, n=30). The internal review identified this as a potentially publishable signature replacing a latency-based signature that is contaminated by Claude CLI subprocess overhead, subscription auth back-off, and inter-agent stagger.
 
 ### Procedure (pre-committed)
 

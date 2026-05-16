@@ -6,7 +6,7 @@ Thank you for your interest. ColludeBench is research infrastructure for measuri
 
 ColludeBench's authorship is fixed: **Hass Dhia, Haedar Hadi, Ahmed Dhia** (H.H.A. Applied Research Institute). External contributors are credited in the `CHANGELOG.md` and via Git commit attribution; significant new modules or experimental designs may earn co-authorship on derivative releases following a documented review by the H.H.A. team.
 
-**AI assistance is internal methodology, not authorship.** This repository is built using a multi-iteration adversarial review pattern with structured multi-dimensional review dimensions, RFC 3161 trusted-timestamp pre-registration, and cross-toolchain Python/SciPy reference verification. These practices are described below as the *integrity scaffold* — they are how we work, not who we are. AI co-author tags, `Co-Authored-By:` trailers, and "with assistance from" footnotes are not used in this repository's commit history, citation file, or release notes.
+**Internal review tooling is methodology, not authorship.** This repository is built using a multi-iteration structured adversarial review process, RFC 3161 trusted-timestamp pre-registration, and cross-toolchain Python/SciPy reference verification. These practices are described below as the *integrity scaffold* — they are how we work, not who we are. The institute does not attribute review tooling, instrumentation, or methodology infrastructure as authorship on this artifact.
 
 ## Integrity Practice (Internal Methodology)
 
