@@ -1,0 +1,15 @@
+# Timeline and Milestones
+
+The 36-month program runs five overlapping phases — infrastructure must precede experiments; individual-mode baselines must precede cross-mode interaction measurement; preliminary results must precede cross-model validation.
+
+| Phase | Months | Activity |
+|-------|:------:|----------|
+| 1. Platform + Pilot | M1–6 | Core team hire (M1–3); ColludeBench-Cascade architecture + middleware + topology controller; 2–8 agent pilot experiments; preliminary FAF estimates for ≥2 topologies |
+| 2. Core Experiments | M4–12 | Class A (failure-mode elicitation, ~500 runs); Class B (5,000-turn longitudinal erosion); scale team hire (M4–12); preliminary FAF across all five topologies M12 |
+| 3. Scale + Knock-Out | M10–24 | 256-agent runs; Class C governance interventions; 2×2×2 knock-out factorial isolating cascade directionality; preliminary cross-failure-mode interaction coefficients M22 |
+| 4. Cross-Model Validation | M18–30 | Frontier-API replication (Claude, GPT-5, Gemini); collusion-detection refinement; ColludeBench-Cascade alpha M18, v1.0 M30; 10,000-trace dataset release M30 |
+| 5. Dissemination | M24–36 | 8–12 peer-reviewed papers (NeurIPS / ICLR / ICML / ACL 2027–2029); policy briefs (EU AI Act Article 73, NIST AI RMF); community workshop; final report |
+
+**Go/no-go decision milestones.** *M6 — Infrastructure feasibility:* ColludeBench-Cascade operational; pilot complete; preliminary FAF for ≥2 topologies. Failure response: reallocate Engineer 2 budget to contract development; extend Phase 1 by 8 weeks; convene external methodology consultation for design review. *M12 — Scientific viability:* Class A produces statistically significant amplification (p < 0.01) for ≥3 topologies; Class B produces identifiable erosion dynamics for ≥1 model family; collusion detection achieves >70% pre-coordination. Failure response: if fewer than two of three criteria met, reduce scope to two highest-signal tracks and reallocate from the weakest. *M24 — Generalizability:* cross-model validation confirms key findings (FAF topology dependence, erosion thresholds, or collusion detection) replicate across ≥2 frontier API models; preliminary cross-failure-mode interaction data available. Failure response: if findings are model-specific, pivot final 12 months toward characterizing model-specific safety profiles and publish the non-generalizability finding as an empirical contribution.
+
+**Critical-path dependencies.** (1) ColludeBench-Cascade infrastructure (M1–6) gates all experimental execution. (2) Class A individual-mode baselines (M4–12) gate the knock-out cross-failure-mode design (M16–24) — interaction coefficients require individual-mode reference points. (3) Open-weight experiments (M4–24) gate frontier API validation (M18–30) — methodology validated on instrumentable models before consuming API budget where internal state is unavailable. Publication drafting, policy translation, and community engagement run in parallel and do not gate scientific progress. Staggered hiring matches personnel costs to experimental demand.

@@ -1,0 +1,32 @@
+\begin{abstract}
+Algorithmic collusion---when autonomous AI agents collude on supra-competitive pricing without
+explicit coordination---has been documented extensively in Q-learning agents in repeated
+Bertrand and Cournot pricing games
+\citep{calvano_etal_2020_ai_algorithmic_pricing_collusion,asker2021ai_pricing}
+and is increasingly recognized as a regulator-relevant agentic-AI oversight challenge
+\citep{ezrachi2016virtual,assad_etal_2024_algorithmic_pricing_competition_empirical}.
+Whether large language model (LLM) agents reproduce these dynamics, and whether the
+basin-of-attraction structure characterizing Q-learner outcomes
+\citep{waltman_kaymak_2008_qlearning_cournot,wunder_littman_babes_2010_qlearning_basin}
+extends to LLMs, remains largely uncharacterized; concurrent benchmark work
+\citep{Tailor_2025_whisper} addresses complementary multi-domain scope, while our focus is
+the basin-of-attraction characterization at fixed Bertrand-pricing setting.
+We report Stage 2b of a pre-registered (OSF Registries; RFC 3161 trusted-timestamped) study
+of LLM-agent Bertrand pricing at extended horizon (50 rounds), with two conditions: GATE-5
+($n=5$ agents, 30 repetitions) and GATE-2 ($n=2$ agents, 15 repetitions). The full analysis
+pipeline is independently reproduced via a Python/SciPy reference verifier; a four-persona
+expert-panel review with adversarial RedTeam calibration surfaced six required revisions
+prior to this preprint.
+At convergence, the profit gain $\Delta_{\text{profit}}$ relative to Nash--Monopoly bounds is
+comparable across conditions ($n=5$: $0.4932$, 95\% CI $[0.3494, 0.6369]$; $n=2$: $0.4522$,
+95\% CI $[0.3873, 0.5172]$), capturing roughly half of the Nash-to-Monopoly gap. Convergence
+dynamics differ sharply: $n=5$ converges in $30/30$ repetitions ($100\%$) within 50 rounds,
+while $n=2$ converges in $1/15$ repetitions ($6.7\%$). These $\Delta_{\text{profit}}$ values
+place LLM agents in a partial-coordination regime materially below typical $Q$-learner
+saturation in matched-parameter Calvano-style settings, where terminal price levels concentrate
+in the upper half of the Nash--Monopoly range \citep{calvano_etal_2020_ai_algorithmic_pricing_collusion}.
+The $n=2$ non-convergent population exhibits regime drift consistent with a wider basin of
+attraction at smaller agent counts.
+Code, pre-registered analysis pipeline, RFC 3161 timestamps, and the full Verification \&
+Correction Log are available at \url{https://github.com/HHA-Applied-Research-Institute/colludebench-cascade}.
+\end{abstract}

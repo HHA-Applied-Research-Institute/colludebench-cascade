@@ -1,0 +1,74 @@
+\section{Limitations}
+\label{sec:limitations}
+
+\subsection{Scope conditions (locked verbatim per Addendum \#1 \S G)}
+\label{sec:limitations-scope}
+
+All Stage 2b findings reported here apply to (i) the model \texttt{claude-haiku-4-5-20251001} only; (ii) Claude CLI subscription authentication via the inference harness invoking \texttt{claude --print --output-format text --no-session-persistence --setting-sources=""}; and (iii) the system and user prompts identical to those locked in the Stage 2 pre-registration. Extension to other Haiku sizes, to Sonnet, to Opus, to non-Anthropic frontier models (GPT, Gemini, Llama, DeepSeek, Qwen, Mistral), to direct Anthropic Messages API access (\texttt{ANTHROPIC\_API\_KEY}, persistent HTTP, \texttt{stream=True}), or to alternative prompt formulations is not claimed and is the explicit subject of Stage 4 (cross-model replication). The reproducibility verification reported in this paper is concordant analysis-pipeline reproduction on the fixed n=15 + n=30 dataset; experiment-level reproducibility (re-collection from new model calls under different infrastructure conditions) requires the Stage 3 instrumentation pre-committed in Addendum \#1 \S F (logged \texttt{model\_version}, \texttt{region}, \texttt{cache\_hit\_tokens}, \texttt{cache\_miss\_tokens}, TTFT, TPOT, \texttt{auth\_handshake\_ms}) and is deferred to that stage.
+
+\subsection{Single Bertrand-pricing setting}
+\label{sec:limitations-bertrand}
+
+Our results are at one fixed demand model (Calvano logit with $\mu = 0.25$) and one fixed marginal-cost structure. Generalization across demand-model families (linear demand, CES, isoelastic, Cournot quantity competition) and across marginal-cost asymmetries between agents is a Stage 3+ question. The basin-of-attraction framework predicts qualitatively similar multimodal terminal-state distributions across demand-model families, but the specific basin widths and the agent-count asymmetry coefficient are likely to vary. We do not extrapolate to demand models we did not test.
+
+Table~\ref{tab:io-robustness-deferral} enumerates four IO-standard robustness channels that an industrial-organization referee would expect, separated by which are computable on the locked Stage 2b traces (no new model calls required) versus which require new prompts. Stage 3 will execute the stamped-data-doable channels; Stage 4 will execute the new-prompt channels. None are reported in this preprint.
+
+\begin{table}[h]
+\centering
+\caption{IO-standard robustness deferral grid. Stamped-data-doable channels (Cournot cross-check, best-response analysis) are computable from the locked Stage 2b traces under fixed-demand-schedule assumptions; new-prompt channels (asymmetric cost, demand-shock sweep) require re-running the agent prompts with perturbed system contexts.}
+\label{tab:io-robustness-deferral}
+\begin{tabular}{p{4.0cm}cc}
+\toprule
+Robustness channel & Stage & Stamped-data-doable? \\
+\midrule
+\emph{(i)} Cournot cross-check (per-round price$\to$quantity transformation under fixed demand schedule, existing agents) & Stage 3 & yes \\
+\emph{(ii)} Best-response analysis (per-round myopic best-response gap from observed actions) & Stage 3 & yes \\
+\emph{(iii)} Asymmetric cost robustness (re-run prompts with cost-perturbed system prompts) & Stage 4 & no (new prompts) \\
+\emph{(iv)} Demand-shock sweep ($\mu \in \{0.15, 0.25, 0.35\}$) & Stage 4 & no (new prompts) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Reasoning-depth versus serving-side variability confound}
+\label{sec:limitations-confound}
+
+The 26\% inter-host wall-clock latency delta between Host A ($\bar{t} = 3499$ s/rep) and Host B ($\bar{t} = 2590$ s/rep) at GATE-2, against a 2.3\% inter-host chain-of-thought length delta, is consistent with both server-side variability \citep{kwon2023pagedattention,zheng2023sglang,patel2023splitwise} and reasoning-depth variability \citep{snell2024testtimecompute,holmes2024deepspeedfastgen}. Stage 2b instrumentation does not separate these mechanisms: per-host wall-clock latency includes Claude CLI subprocess spawn overhead, subscription authentication handshake, rate-limit back-off, scheduling delays, prefill, decode, streaming, and teardown. The Stage 3 trace-schema additions pre-committed in Addendum \#1 \S F (\texttt{output\_tokens}, \texttt{ttft\_ms}, \texttt{tpot\_ms}, \texttt{cache\_hit\_tokens}, \texttt{cache\_miss\_tokens}, \texttt{auth\_handshake\_ms}, \texttt{region}) are designed to isolate these contributions explicitly. Until those are in hand, we report latency as a descriptive observable per the locked Addendum \#1 \S E latency caveat (\S\ref{sec:methods-latency}) and do not interpret it mechanistically.
+
+\subsection{Survivor-rep consistency at $n = 4$}
+\label{sec:limitations-survivor}
+
+The survivor-rep consistency analysis (\S\ref{sec:results-survivor}) operates on $n = 4$ repetitions total (2 survivor + 2 re-run). $n = 4$ is too small to formally distinguish round-level threshold-aggregation noise from substantive cross-window drift; we frame the consistency-negative result on the regime-label dimension exploratorily. The underlying numerics ($\Delta_{\text{profit}}$, mean price, chain-of-thought length, parse success) are tight across all four reps, and the apparent regime hops are interpretable as round-level threshold sensitivity propagating to the regime aggregate when window-mean prices oscillate near the cooperation midpoint $p^{\text{mid}}_2 = 1.6990$. Stage 4 cross-model replication is the formal mechanism-adjudication test.
+
+\subsection{Concordant analysis-pipeline reproduction, not experiment-level reproduction}
+\label{sec:limitations-repro-scope}
+
+The independent SciPy verifier reproduces the deterministic analysis pipeline on the fixed n=15 + n=30 dataset to $\leq 5 \times 10^{-3}$ numerical tolerance, on different host machines and operating systems. This does not constitute experiment-level reproducibility: re-collection from new model calls under different \texttt{model\_version}, region, prompt-cache state, or collection wall-clock window could produce different traces. The trace-integrity rejection of one host's slice (\S\ref{sec:results-host}) is itself an instance of the same sensitivity --- a multi-run trace concatenation produced visibly different distributional structure than the canonical single-run slices, and was correctly rejected by the pre-committed integrity guard before any analysis used it. Stage 3 instrumentation closes this gap.
+
+\subsection{Pre-registered exclusion criteria (none triggered)}
+\label{sec:limitations-exclusions}
+
+For transparency: we pre-registered specific exclusion criteria for repetitions (parse-failure rate $> 10\%$ over a repetition; connectivity $< 50\%$ of design; collapsed-mode outputs in $> 95\%$ of rounds, where ``collapsed'' is defined by identical-string output across consecutive rounds). None of the three criteria were triggered in any Stage 2b repetition: parse-failure rate was $0.000\%$ across all 9000 agent-round invocations, connectivity was $100\%$, and collapsed-mode outputs did not appear at any horizon. We did not have to make any post-hoc inclusion or exclusion decisions. This is reported here for procedural transparency, not as a substantive limitation.
+
+\subsection{Stage 2b sample-size envelope}
+\label{sec:limitations-envelope}
+
+Five Stage 2b results report a directionally-consistent point estimate whose 95\% confidence interval includes the null. Stage 2b is positioned as a directional, pre-registration-locked stage; Stage 3 is the formal test. Table~\ref{tab:sample-size-envelope} consolidates the five results in one place; body sections (\S\ref{sec:results-basin}, \S\ref{sec:results-reasoning}, \S\ref{sec:results-cluster-effect}, \S\ref{sec:results-host}, \S\ref{sec:discussion-wu2025}) cite this table once each rather than re-litigating the consistent-with-but-CI-spans-zero structure per result.
+
+\begin{table}[h]
+\centering
+\caption{Stage 2b sample-size envelope: five results whose point estimates are directionally consistent with the pre-registered hypothesis but whose 95\% confidence intervals include the null. Stage 3 redress per Addendum \#1 \S F.}
+\label{tab:sample-size-envelope}
+\begin{tabular}{p{4.4cm}cccp{4.0cm}}
+\toprule
+Result & $n_{\text{rep}}$ & Point estimate & 95\% CI / $p$ & Stage 3 redress \\
+\midrule
+Basin-stability at $n=2$ (\S\ref{sec:results-basin}) & 15 & $12/15 = 0.80$ & Wilson $[0.548, 0.930]$ overlaps $0.80$ threshold & $n_{\text{rep}} \geq 30$, horizon $100$ \\
+Reasoning--$\Delta_{\text{profit}}$ at $n=5$ (\S\ref{sec:results-reasoning}) & 30 & $r = -0.30$ & Fisher-$z$ $[-0.60, +0.06]$ & cross-model replication \\
+Cluster-mean reasoning effect, GATE-5 $k=2$ (\S\ref{sec:results-cluster-effect}) & 30 & $d = 0.60$ & BCa $[-6.6, +66.7]$ chars & cross-model replication \\
+Host effect at GATE-2 (\S\ref{sec:results-host}) & 15 (10/5) & OR $= 13.5$ & Fisher's $p = 0.0769$ & multi-rep host audit, $n_{\text{rep}} \geq 30$ \\
+Wu 2025 simplicity-bias at $n=2$ (\S\ref{sec:discussion-wu2025}) & 15 & $r = -0.47$ & Fisher-$z$ $[-0.79, +0.05]$ & cross-model replication \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The Stage 3 expansion to $n_{\text{rep}} \geq 30$ at horizon $100$ is pre-committed (Addendum \#1 \S F) and is structured to discriminate each of the five results above. We note that the only post-hoc power statistic in the paper (\S\ref{sec:results-reasoning}, $39\%$ at $r = -0.30$) is reported once in body and not duplicated here, since the table reports observed CIs rather than computed power.

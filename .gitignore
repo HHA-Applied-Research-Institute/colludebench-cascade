@@ -1,0 +1,40 @@
+# Build artifacts
+*.aux
+*.log
+*.bbl
+*.blg
+*.out
+*.toc
+*.pyc
+__pycache__/
+.DS_Store
+
+# Dependencies
+node_modules/
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Local credentials (NEVER commit)
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+ANTHROPIC_API_KEY*
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+Thumbs.db
+.AppleDouble
+
+# Local result directories that contain raw API outputs
+results-local/
+*.tmp.jsonl

@@ -1,0 +1,109 @@
+\section{Introduction}
+\label{sec:intro}
+
+A central question in the economics of artificial intelligence is whether autonomous pricing
+agents---deployed independently by competing firms, with no shared reward function and no
+explicit coordination protocol---converge to supra-competitive (collusive) outcomes purely
+through repeated interaction in a market. \citet{calvano_etal_2020_ai_algorithmic_pricing_collusion} demonstrated that two
+independent $Q$-learners in a repeated Bertrand duopoly converge to prices well above the
+static Nash equilibrium and approach the monopoly benchmark, with terminal prices distributed
+across multiple distinct attractors as a function of initial $Q$-matrix and exploration
+parameters. Subsequent empirical work \citep{assad_etal_2024_algorithmic_pricing_competition_empirical,fish2024algorithmicCollusion}
+has extended these findings to richer agent classes and field settings, and a parallel
+regulatory literature \citep{ezrachi2016virtual,asker2021ai_pricing} has framed the
+phenomenon as a first-order antitrust concern: existing competition law typically requires
+evidence of explicit agreement, which self-learning agents do not produce.
+
+The arrival of large language model (LLM) agents introduces a third algorithmic family with
+qualitatively different properties from $Q$-learners. LLMs carry no shared reward signal, no
+explicit value function, no online weight updates, and no exploration parameter; their
+``learning'' within a pricing game is in-context, mediated through textual reasoning and
+prompt history. Whether such agents reproduce the basin-of-attraction structure that
+characterizes $Q$-learner outcomes
+\citep{waltman_kaymak_2008_qlearning_cournot,wunder_littman_babes_2010_qlearning_basin}
+is largely uncharacterized in the literature.\footnote{Concurrent work
+\citep{Tailor_2025_whisper} introduces a multi-domain collusion-detection benchmark spanning
+several economic and adversarial settings; our scope is the basin-of-attraction
+characterization at fixed Bertrand-pricing setting and is complementary in scope.}
+
+In this paper we report Stage 2b of a pre-registered pilot study of LLM-agent Bertrand
+pricing dynamics. Stage 2b extends the horizon of an earlier 25-round Stage 2 protocol to
+50 rounds across two conditions: GATE-5 ($n=5$ agents, 30 repetitions) and GATE-2 ($n=2$
+agents, 15 repetitions). The pre-registered analysis pipeline is locked on OSF Registries
+prior to data collection and timestamped with RFC 3161 trusted timestamps; the same pipeline
+is independently re-implemented in Python with SciPy reference statistical primitives, and
+the full pipeline runs against the locked dataset are mutually verified to within numerical
+tolerance.
+
+Our headline finding is an asymmetry between two conditions whose static profit measure is
+nearly identical but whose dynamic convergence properties differ sharply: $\Delta_{\text{profit}}$
+at convergence is $0.4932$ ($n=5$) vs.\ $0.4522$ ($n=2$)---both capturing roughly half the
+Nash-to-Monopoly gap---while convergence within the 50-round horizon occurs in $30/30$
+repetitions for $n=5$ and only $1/15$ repetitions for $n=2$. The $n=2$ non-convergent
+population exhibits sustained regime drift that we characterize, in a pre-committed secondary
+analysis, as basin-stable but not statically converged. We argue this asymmetry is consistent
+with a wider basin of attraction at smaller agent counts: a larger fraction of trajectories
+land in the supra-competitive regime under $n=5$, while $n=2$ trajectories occupy a wider
+distribution of within-basin behaviors that have not equilibrated by round 50. The mechanism
+behind this asymmetry is not the cross-sectional-signal reading we initially proposed: a
+pre-registered text-based test (\S\ref{sec:discussion-asymmetry-cot}) reversed that reading
+on Stage 2b data; a refined reading --- per-peer attention density at $n = 2$ exceeds the
+rate at $n = 5$ even after controlling for total CoT word count --- is supported by
+Stage 2b data and locked for Stage 4 cross-model generalization.
+
+As a co-equal headline, the bimodal $k = 2$ basin structure that \citet{Cao_2026_llm_collusion}
+reports for LLM-agent pricing is recovered at $n = 5$ ($7/10$ gap-statistic resamples;
+$30/30$ basin-stable) and not recovered at $n = 2$ ($k = 1$ in $10/10$ resamples)
+within the Stage 2b $n_{\text{rep}} = 15$ sample-size envelope --- the basin signature
+is conditional on agent count, not a fixed property of LLM-agent pricing.
+
+Our contributions are:
+
+\begin{enumerate}
+    \item \textbf{Empirical:} A pre-registered, multi-rep characterization of LLM-agent
+        Bertrand-pricing dynamics under two agent counts, with full per-repetition
+        reporting (\S\ref{sec:results}). To our knowledge, this is the first such study
+        with a pre-committed RFC 3161-timestamped analysis pipeline.
+
+    \item \textbf{Methodological:} A verification protocol consisting of (a) cryptographic
+        pre-registration as the foundation of analytic-claim integrity, (b) procedural
+        cross-toolchain reproduction (TypeScript primary; Python/SciPy verifier) as a
+        reinforcing layer, and (c) adversarial multi-persona expert-panel review as a
+        further reinforcing layer. The protocol is hierarchical, not symmetric: the
+        cryptographic lock is the strongest integrity primitive available for analysis-plan
+        locking; the verification and adversarial layers reinforce it but cannot substitute
+        for it (\S\ref{sec:methods}).
+
+    \item \textbf{Conceptual:} A pre-registered multi-condition cross-repetition
+        characterization showing that LLM bimodal terminal-state structure
+        \citep{Cao_2026_llm_collusion} is conditional on agent count---recovered at $n = 5$
+        ($k = 2$ in $7/10$ gap-statistic resamples; $30/30$ basin-stable), and not
+        recovered at $n = 2$ within the Stage 2b $n_{\text{rep}} = 15$ sample-size envelope
+        (\S\ref{sec:limitations-envelope}). The cross-sectional-signal mechanism for this
+        conditionality, initially proposed as reading \emph{(a)} of the basin-width
+        hypothesis, was empirically reversed by a pre-registered text-based test
+        (\S\ref{sec:discussion-asymmetry-cot}), and a refined reading \emph{(a$'$)} ---
+        per-peer attention density at $n = 2$ exceeds the rate at $n = 5$ even controlling
+        for total CoT word count --- is supported by Stage 2b data via the pre-registered
+        talk-volume-controlled residualization. The basin-width-by-agent-count hypothesis is
+        locked for Stage 3 falsification testing (\S\ref{sec:discussion-falsifiability})
+        and refined reading \emph{(a$'$)} for Stage 4 cross-model generalization
+        (\S\ref{sec:discussion-asymmetry-cot}).
+\end{enumerate}
+
+We frame the Stage 2b outcomes as partial-coordination---supra-competitive prices reached
+without explicit agreement---per the regulator-relevant case identified by
+\citet{ezrachi2016virtual,asker2021ai_pricing}; \S\ref{sec:discussion-implications}
+elaborates with full citations and the welfare-effect-adjudication scope conditions.
+
+The pre-registered Stage 3 design expands the repetition count to $n \geq 30$ for both
+conditions, addresses the basin-stability single-rep fragility that the $n=15$ Stage 2b
+sample cannot eliminate, and instruments the runner trace schema to isolate LLM-serving
+variability \citep{kwon2023pagedattention,zheng2023sglang,holmes2024deepspeedfastgen} from
+reasoning-depth variability \citep{snell2024testtimecompute}---a confound that this Stage 2b
+report explicitly does not adjudicate (\S\ref{sec:limitations}).
+
+We position this work as a multi-agent LLM-safety contribution; classical industrial-organization
+equilibrium-selection refinements (e.g., welfare-loss quantification, full Stigler-comparative-statics
+adjudication, Cournot/asymmetric-cost robustness) are deferred to companion work that builds on
+the Stage 3 expansion (\S\ref{sec:limitations-bertrand}).

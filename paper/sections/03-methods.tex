@@ -1,0 +1,106 @@
+\section{Methods}
+\label{sec:methods}
+
+\subsection{Game and agent setup}
+\label{sec:methods-game}
+
+We instantiate a finite-horizon Bertrand pricing game with $n$ identical agents over 50 rounds. In each round $t \in \{1, \ldots, 50\}$, each agent observes the prior round's price vector $\mathbf{p}_{t-1} \in \mathbb{R}_{\geq 0}^n$ together with their own action history, and posts a price $p_{i,t}$. Demand is allocated by a Calvano-style logit demand model with substitution parameter $\mu$ (\citealp{calvano_etal_2020_ai_algorithmic_pricing_collusion}); per-round profits are realized and observed by all agents at round end. We hold $\mu = 0.25$ constant throughout Stage 2b; $\mu$ is the explicit experimental factor for Stage 3.
+
+Each agent is a Claude Haiku 4.5 instance (\texttt{claude-haiku-4-5-20251001}) accessed through the Claude CLI under subscription authentication; the inference harness invokes \texttt{claude --print --output-format text --no-session-persistence --setting-sources=""} per round per agent. The system and user prompts are identical to those locked in the Stage 2 pre-registration; their full text is reproduced in the supplementary materials. Each agent emits a chain-of-thought reasoning block alongside its price commitment; the chain-of-thought is parsed for downstream descriptive analysis (\S\ref{sec:results-reasoning}) but does not enter the demand-model computation.
+
+\subsection{Calvano benchmarks}
+\label{sec:methods-benchmarks}
+
+For each agent count $n$, the static-game Nash equilibrium price $p^{\text{Nash}}_n$ and the joint-monopoly price $p^{\text{Mono}}_n$ are derived analytically from the demand model. The cooperation midpoint threshold $p^{\text{mid}}_n = (p^{\text{Nash}}_n + p^{\text{Mono}}_n)/2$ provides a per-round binary cooperation indicator. For the two conditions reported in this paper:
+
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+Condition & $p^{\text{Nash}}_n$ & $p^{\text{Mono}}_n$ & $p^{\text{mid}}_n$ \\
+\midrule
+GATE-5 ($n = 5$) & $1.3115$ & $2.0972$ & $1.7044$ \\
+GATE-2 ($n = 2$) & $1.4729$ & $1.9250$ & $1.6990$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The primary endpoint is $\Delta_{\text{profit}}$ at convergence, defined as the fraction of the Nash-to-Monopoly profit gap captured at the steady-state regime: $\Delta_{\text{profit}} = (\pi^{\text{conv}} - \pi^{\text{Nash}}) / (\pi^{\text{Mono}} - \pi^{\text{Nash}})$, where $\pi^{\text{conv}}$ is mean per-agent profit over the convergence window (or rounds 46--50 if the trajectory does not converge under the pre-registered criterion).
+
+\subsection{Three layers of rigor}
+\label{sec:methods-rigor}
+
+We adopt a layered integrity stack consisting of three distinct commitments, in order of structural strength: (i) cryptographic pre-registration as the foundation, (ii) independent cross-toolchain verification as a procedural reinforcing layer, and (iii) adversarial multi-persona expert-panel review as an iterative reinforcing layer. We do not present these three commitments as equivalent. Cryptographic pre-registration is the strongest integrity primitive available for analysis-plan locking; verification and adversarial review reinforce it but cannot substitute for it.
+
+\paragraph{Layer 1 --- Pre-registration as the foundation.}
+The Stage 2b analysis plan is pre-registered on OSF Registries and timestamped with RFC 3161 trusted timestamps (FreeTSA; SHA-256 \texttt{49fc2b27\ldots}, stamped 2026-04-20 13:59:35 UTC). The pre-registration locks: hypotheses, primary endpoints, the analysis pipeline, model structure, contrasts, stopping rules, exclusion criteria, software versions, exploratory delineation, blinding protocol, and prior sensitivity. Four addenda were added pre-data-collection or pre-analysis (each separately RFC 3161 stamped):
+
+\begin{itemize}
+    \item \textbf{Addendum \#1} (2026-04-23, SHA-256 \texttt{43808a91\ldots}): formal $k$-selection bootstrap procedure (\S A), four pre-committed Pearson correlations with Fisher-$z$ confidence intervals (\S C), Wu et al.\ 2025 simplicity-bias falsifiability test (\S D), latency-caveat verbatim wording (\S E), Stage 3 instrumentation forward plan (\S F), and single-model/single-auth-path/single-prompt scope limitations (\S G).
+    \item \textbf{Addendum \#2}: Stage 2b protocol-violation note for the 2026-04-23 attempt.
+    \item \textbf{Addendum \#3} (SHA-256 \texttt{53d4ff65\ldots}): survivor-rep consistency check (\S A) and unconditional per-host descriptives plus Fisher's exact host-effect test (\S B).
+    \item \textbf{Addendum \#4} (SHA-256 \texttt{bb53aa9a\ldots}): basin-stability secondary lens, pre-committed before any computation; never overrides primary verdicts.
+\end{itemize}
+
+\paragraph{Layer 2 --- Independent cross-toolchain verification.}
+Every headline statistical operation is implemented twice in two different programming languages and toolchains. The primary analyzer is implemented in TypeScript with hand-rolled statistical primitives (\texttt{pilot/analyze-gate-2b.ts}, \texttt{pilot/analyze-host-effect.ts}, \texttt{pilot/analyze-survivor-consistency.ts}); the independent verifier is implemented in Python with SciPy reference implementations (\texttt{pilot/admin/verification/verify-stage2b-2026-04-26.py}, \texttt{pilot/admin/verification/verify-formalize-2026-04-26.py}). Independent re-derivation is run after every analyzer update, and any discrepancy beyond a $5 \times 10^{-3}$ numerical tolerance halts the pipeline pending reconciliation.
+
+The cross-toolchain procedure surfaced one analyzer bug in the n=15 Stage 2b dataset prior to any external output. The hand-rolled \texttt{fishersExact2x2()} routine in \texttt{pilot/analyze-host-effect.ts} originally computed the hypergeometric denominator using a row-sum (\texttt{logChoose(n, rowSum1)}) where the column-sum is correct (\texttt{logChoose(n, colSum1)}); this systematically biased reported $p$-values by a factor of $\binom{15}{10}/\binom{15}{11} = 3003/1365 \approx 2.2$ for the relevant Gate-2 contingency. Pre-fix host-effect $p = 0.0350$ would have triggered a host-heterogeneity-detected framing under the pre-committed Addendum \#3 \S B2 decision rule; post-fix $p = 0.0769$ matches \texttt{scipy.stats.fisher\_exact} to $|\Delta| < 2.3 \times 10^{-5}$ and triggers the host-independent-within-power framing instead. The bug fix and the conclusion change are documented transparently in the Verification \& Correction Log (\texttt{pilot/admin/team-notes/2026-04-26-host-effect-analysis.md}, \S Verification \& Correction Log).
+
+All non-trivial statistical operations on headline claims are now SciPy-validated; hand-rolled implementations are retained in the analyzer for transparency but are never relied upon for headline claims. The cross-toolchain procedure is voluntary discipline, not cryptographic lock; its strength is in catching errors before they propagate, not in preventing post-hoc tampering.
+
+\paragraph{Layer 3 --- Adversarial multi-persona expert-panel review.}
+Each headline analytical artifact is subjected to a multi-persona expert-panel review prior to preprint lock. The panel for this manuscript comprises four domain-tuned personas (Data Scientist, Statistical Algorithmist, Systems Engineer, Computer Science Professor) drawn from a curated knowledge base of 79 sources (\texttt{working/literature/kb/sources.jsonl}); the panel is followed by a RedTeam adversarial-calibration pass that scores attack vectors across four severity tiers. The panel surfaced six required revisions to the n=15 Stage 2b analysis prior to this preprint, including a basin-stable-rate fragility flag and a within-Host-A pairwise match-rate caveat; the adversarial-calibration pass moderately revised two of the panel's verbatim recommendations. The procedure is iterative judgment, not cryptographic lock; its strength is in stress-testing claim wording before it lands in front of external reviewers.
+
+\begin{figure}[h]
+\centering
+\input{figures/fig1-methodology-flow}
+\caption{Three-layer integrity stack used to produce the analyses in this paper. \textbf{Layer 1 (foundation):} cryptographic pre-registration locks the analysis plan via OSF Registries with RFC 3161 trusted timestamps; four addenda are separately stamped pre-data-collection or pre-analysis. \textbf{Layer 2 (procedural reinforcement):} the TypeScript primary analyzer is independently re-derived by a Python/SciPy reference verifier; discrepancies above $5 \times 10^{-3}$ tolerance halt the pipeline pending reconciliation, and the procedure caught one analyzer bug pre-submission. \textbf{Layer 3 (iterative reinforcement):} a four-persona expert panel plus RedTeam adversarial-calibration pass produces six required revisions before preprint lock. The three commitments are not equivalent in structural strength; pre-registration is the foundation, verification and adversarial review reinforce but cannot substitute for it.}
+\label{fig:methodology-flow}
+\end{figure}
+
+\subsection{Sample size}
+\label{sec:methods-sample-size}
+
+Stage 2b is designed as a falsification-pivot pilot: GATE-5 contributes 30 repetitions ($n_{\text{rep}} = 30$ at $n = 5$ agents) and GATE-2 contributes 15 repetitions ($n_{\text{rep}} = 15$ at $n = 2$ agents) for a total of 7500 agent-rounds at GATE-5 and 1500 at GATE-2 (9000 agent-rounds in aggregate). The repetition count was set at the lowest level capable of supporting the pre-registered Stage 3 go/no-go gate at $\alpha = 0.05$ for the primary endpoint, and is not powered for fine-grained inference on secondary contrasts.
+
+The basin-stability secondary verdict at GATE-2 (\S\ref{sec:results-basin}) rests on $12/15$ basin-stable repetitions, with a Wilson 95\% CI of $[0.548, 0.930]$ that spans the pre-registered basin-PROCEED 80\% threshold itself: the rate is statistically distinguishable from the $0.50$ baseline (lower bound $0.548 > 0.50$) but the CI is wide enough to include both $0.80$ and outcomes well below it. One fewer basin-stable repetition (i.e., $11/15$) yields $0.733$ and the basin-PROCEED rule fails to fire; the secondary verdict is therefore single-rep-fragile at this sample size by design. We acknowledge this fragility directly here in Methods rather than in Limitations: it is a pre-registered feature of the falsification-pivot design, not a post-hoc concern. The pre-registered Stage 3 design expands $n_{\text{rep}}$ to $\geq 30$ for both conditions and lengthens the horizon to 100 rounds, which is sufficient to discriminate the basin-PROCEED threshold from the 0.50 baseline at the desired confidence level. The within-Host-A pairwise temporal-stability check (\S\ref{sec:results-host}) and the survivor-rep consistency check (\S\ref{sec:results-survivor}) operate on $n = 5$ pairs and $n = 4$ repetitions respectively, and are reported descriptively rather than as confirmatory tests.
+
+\subsection{Pre-registered analysis pipeline}
+\label{sec:methods-pipeline}
+
+\paragraph{Convergence detection.}
+A repetition is convergent within the 50-round horizon if its mean price changes by less than 1\% over five consecutive rounds, evaluated rolling. Repetitions that fail this criterion are non-convergent (NC) and have $\Delta_{\text{profit}}$ computed over rounds 46--50.
+
+\paragraph{Regime classification.}
+Each repetition is classified by mean cooperation rate over the final-window rounds 41--50. Cooperation rate per round is $\mathbb{1}[\bar{p}_t > p^{\text{mid}}_n]$, where $\bar{p}_t$ is the cross-agent mean price at round $t$. The three regimes are: \textbf{high} ($> 0.80$), \textbf{mid} ($[0.20, 0.80]$), \textbf{low} ($< 0.20$). Wilson 95\% confidence intervals on per-regime probabilities are computed by the standard one-sample binomial procedure.
+
+\paragraph{Cross-rep summaries.}
+Per-condition means are reported with 95\% percentile bootstrap confidence intervals over the per-rep $\Delta_{\text{profit}}$ distribution (Mulberry32 PRNG, $B = 10{,}000$, fixed seed). Stage 3 go/no-go per condition: \textbf{PROCEED} if (parse-failure rate $< 5\%$) AND ($\Delta_{\text{profit}} \in [0.3, 0.9]$) AND (convergence rate adequate) AND (regime distribution characterized); otherwise \textbf{HALT}.
+
+\paragraph{Basin-stability secondary lens (Addendum \#4).}
+For each repetition, the dominant regime over rounds 31--40 is compared to the dominant regime over rounds 41--50; the repetition is \emph{basin-stable} if the two windows agree. Cross-condition basin-PROCEED fires if basin-stable rate $\geq 80\%$. The secondary verdict never overrides the primary Stage 3 verdict and is reported as descriptive characterization of within-basin price drift.
+
+\paragraph{$k$-selection (Addendum \#1 \S A).}
+Per-rep means over rounds 41--50 are clustered by $k$-means in 1D over $\Delta_{\text{profit}}$ for $k \in \{1, 2, 3, 4, 5\}$. The elbow $k$ is selected by the gap statistic of \citet{tibshirani_walther_hastie_2001_gap_statistic} as primary; BIC is reported as secondary. The bootstrap procedure draws 10 resamples per dataset; in each resample, 20\% of repetitions are dropped at random. Recovery threshold is $\geq 7/10$ resamples for the modal $k$. We additionally report a 100-resample $\times$ 10-seed sweep (1000 total resamples) as supplementary robustness; results are consistent with the locked 10-resample procedure.
+
+\paragraph{Per-host descriptives and Fisher's exact host-effect test (Addendum \#3 \S B).}
+For each host machine, per-rep $\Delta_{\text{profit}}$, regime distribution, convergence rate, mean chain-of-thought length, and mean wall-clock latency are reported. The host-effect test is two-tailed Fisher's exact on the regime-by-host contingency; because the HIGH regime contains zero reps in the n=15 Gate-2 dataset, the effective contingency reduces to $2 \times 2$ (MID/LOW $\times$ Host A/Host B). The reduction from the originally pre-committed $3 \times 3$ contingency (regime $\times$ host with three regimes and three hosts) to $2 \times 2$ is a consequence of (a) the trace-integrity rejection of one host's slice (collapsing the host axis from 3 to 2) and (b) the empirical absence of HIGH-regime reps at $n = 2$ (collapsing the regime axis from 3 to 2); neither is a post-hoc design choice.
+
+\paragraph{Within-Host-A pairwise temporal-stability check (Addendum \#4 \S C2).}
+Host A's 10 reps are split across two non-contiguous wall-clock windows (slice 1: 5 reps on 2026-04-24; slice 2: 5 reps on 2026-04-25, $\sim 24$ hours later, same machine). Pairs are formed by within-host index. The primary within-host statistic is the pairwise regime match rate; we report the Wilson 95\% CI but caveat that $n = 5$ pairs is too small for a formal test. We report Fisher's exact on the $2 \times 2$ MID/LOW $\times$ slice contingency for transparency only --- the contingency $[a=4, b=1; c=5, d=0]$ has a zero cell ($d = 0$) and the observed table is the most extreme under the null hypothesis, so the resulting $p = 1.0000$ and $\text{OR} = 0.000$ are degeneracy artifacts of the zero cell, not evidence of distributional equivalence.
+
+\paragraph{Survivor-rep consistency check (Addendum \#3 \S A).}
+For each survivor repetition (carried over from a 2026-04-23 ratelimit-failed pilot), the regime label is compared to the corresponding re-run repetition from the canonical 2026-04-24 slice. The check operates on $n = 4$ total reps (2 survivor + 2 re-run), which is too small to formally distinguish threshold-aggregation noise from substantive drift; we report the verdict (consistency-positive or consistency-negative on the regime-label dimension) descriptively and defer mechanism adjudication to Stage 4 cross-model replication.
+
+\paragraph{Reasoning-length analysis (Addendum \#1 \S C).}
+Per-repetition mean chain-of-thought reasoning length (character count over rounds 41--50) is correlated with per-rep $\Delta_{\text{profit}}$ via Pearson $r$; Fisher-$z$ 95\% confidence intervals are reported regardless of direction or magnitude. A basin-fixed-effects regression of $\Delta_{\text{profit}}$ on reasoning length plus regime dummies (HC3 robust standard errors) tests whether reasoning length is a within-basin signature; the locked decision rule is: \emph{if the reasoning-length coefficient is not statistically distinguishable from zero after basin fixed effects, reasoning-length will be reported as a between-basin discriminator but not a within-basin signature.} We additionally report Cohen's $d$, Welch's $t$, and bootstrap percentile + BCa 95\% confidence intervals on the cluster-mean reasoning-length difference at the formally selected $k$ as a strict effect-size test. Latency is retained as a descriptive observable per the locked Addendum \#1 \S E latency caveat (\S\ref{sec:methods-latency}) but is not interpreted mechanistically.
+
+\subsection{Latency caveat (locked verbatim)}
+\label{sec:methods-latency}
+
+Reported \texttt{latency\_ms} values are wall-clock elapsed time per agent-round as measured in the experiment harness. They include: Claude CLI subprocess spawn overhead, subscription authentication, rate-limit back-off, scheduling delays, prefill, decode, streaming, and teardown --- in addition to model inference. They are not a proxy for inference time. Per-agent 500\,ms stagger (\texttt{pilot/runner/round-executor.ts:97}) is also included. Latency is retained as a descriptive observable and for reproducibility auditing; it is not interpreted mechanistically.
+
+\subsection{Reproducibility scope}
+\label{sec:methods-repro}
+
+The reproducibility verification reported in this paper is \emph{concordant analysis-pipeline reproduction} on the fixed n=15 + n=30 dataset --- the deterministic analysis pipeline reproduces digit-for-digit (within $5 \times 10^{-3}$ tolerance) on the locked traces across the TypeScript primary analyzer and the Python/SciPy reference verifier, on different host machines and operating systems. This does NOT establish experiment-level reproducibility: re-collection from new model calls under different \texttt{model\_version}, region, prompt-cache state, or collection wall-clock window could produce different traces. Experiment-level reproducibility is the explicit subject of the Stage 3 instrumentation pre-committed in Addendum \#1 \S F (logged \texttt{model\_version}, \texttt{region}, \texttt{cache\_hit\_tokens}, \texttt{cache\_miss\_tokens}, TTFT, TPOT, \texttt{auth\_handshake\_ms}) and is deferred to that stage.

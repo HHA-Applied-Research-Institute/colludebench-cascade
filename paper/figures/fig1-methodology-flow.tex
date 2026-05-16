@@ -1,0 +1,72 @@
+% Figure 1 — Three-layer integrity stack methodology flow.
+% TikZ-native per AppliedResearch Standard 17 (block diagrams).
+% Anti-orphan-stub rules: every arrow anchored to a real node face.
+% Z-bend with explicit shared waypoints for branching arrows.
+
+\begin{tikzpicture}[
+    >=Stealth,
+    node distance=0.45cm and 0.55cm,
+    every node/.style={font=\small},
+    layer/.style={
+        draw, rounded corners=2pt, thick,
+        minimum width=3.7cm, minimum height=0.95cm,
+        align=center, font=\small\bfseries
+    },
+    sublayer/.style={
+        draw, rounded corners=2pt,
+        minimum width=3.4cm, minimum height=0.75cm,
+        align=center, font=\footnotesize
+    },
+    arr/.style={->, thick, >=Stealth},
+    fb/.style={->, thick, dashed, >=Stealth, gray!70},
+]
+
+% ── Column 1: Foundation (pre-registration) ──
+\node[layer, fill=blue!10] (prereg) {Pre-registration\\(OSF + RFC 3161)};
+\node[sublayer, below=of prereg] (addenda)
+    {4 addenda, each\\separately stamped};
+\node[sublayer, below=of addenda] (locked)
+    {Hypotheses, endpoints,\\analysis pipeline locked};
+
+% ── Column 2: Data + Primary analyzer ──
+\node[layer, right=2.0cm of prereg, fill=green!10] (data) {Data collection\\(50 rounds, $n_{\text{rep}}$ runs)};
+\node[layer, below=of data, fill=green!10] (primary) {Primary analyzer\\(TypeScript)};
+
+% ── Column 3: Verification + reconciliation ──
+\node[layer, right=2.0cm of data, fill=orange!12] (verifier) {Independent verifier\\(Python + SciPy)};
+\node[layer, below=of verifier, fill=orange!12] (reconcile) {Reconciliation\\($|\Delta| \le 5{\times}10^{-3}$)};
+
+% ── Column 4: Adversarial review ──
+\node[layer, right=2.0cm of verifier, fill=red!10] (panel) {4-persona expert panel\\(DS, StatAlgo, SysEng, CSProf)};
+\node[layer, below=of panel, fill=red!10] (redteam) {RedTeam adversarial\\calibration};
+
+% ── Bottom: outputs ──
+\node[sublayer, below=1.0cm of reconcile, minimum width=4.5cm, fill=yellow!18] (revisions)
+    {6 required revisions\\applied pre-preprint};
+\node[layer, right=1.4cm of revisions, fill=yellow!18, minimum width=3.3cm] (preprint)
+    {Preprint v0\\(this manuscript)};
+
+% ── Forward flow arrows (anchored to real node faces) ──
+\draw[arr] (locked.east) -| ($(data.south) + (0,-0.35)$) -- (data.south);
+\draw[arr] (data.south) -- (primary.north);
+\draw[arr] (primary.east) -- (verifier.west);
+\draw[arr] (verifier.south) -- (reconcile.north);
+\draw[arr] (reconcile.east) -| ($(panel.south) + (0,-0.35)$) -- (panel.south);
+\draw[arr] (panel.south) -- (redteam.north);
+\draw[arr] (redteam.south) |- (revisions.east);
+\draw[arr] (revisions.east) -- (preprint.west);
+
+% ── Verification feedback loop (analyzer ↔ verifier; routed around) ──
+\draw[fb] (verifier.south west) to[bend left=18] node[midway, above, sloped, font=\scriptsize, gray] {discrepancy halts pipeline} (primary.south east);
+
+% ── Layer labels (top, above each column) ──
+\node[font=\footnotesize\itshape, above=0.15cm of prereg, blue!60!black]
+    {\textbf{Layer 1:} Foundation};
+\node[font=\footnotesize\itshape, above=0.15cm of data, green!50!black]
+    {\textbf{Source}};
+\node[font=\footnotesize\itshape, above=0.15cm of verifier, orange!75!black]
+    {\textbf{Layer 2:} Verification};
+\node[font=\footnotesize\itshape, above=0.15cm of panel, red!70!black]
+    {\textbf{Layer 3:} Adversarial};
+
+\end{tikzpicture}

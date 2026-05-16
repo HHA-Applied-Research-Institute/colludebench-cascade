@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling>=1.18"]
+build-backend = "hatchling.build"
+
+[project]
+name = "colludebench-cascade"
+version = "0.1.0"
+description = "Pre-registered benchmark for measuring multi-agent LLM collusion (placeholder; the canonical implementation is the TypeScript-Bun runner at github.com/HHA-Applied-Research-Institute/colludebench-cascade)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "Hass Dhia",   email = "hass@hharesearch.org"   },
+  { name = "Haedar Hadi", email = "haedar@hharesearch.org" },
+  { name = "Ahmed Dhia",  email = "ahmed@hharesearch.org"  },
+]
+keywords = [
+  "multi-agent-systems",
+  "llm-safety",
+  "algorithmic-collusion",
+  "ai-oversight",
+  "pre-registration",
+  "rfc-3161",
+  "trustworthy-ai",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "click>=8.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/HHA-Applied-Research-Institute/colludebench-cascade"
+Repository = "https://github.com/HHA-Applied-Research-Institute/colludebench-cascade"
+Issues = "https://github.com/HHA-Applied-Research-Institute/colludebench-cascade/issues"
+Documentation = "https://github.com/HHA-Applied-Research-Institute/colludebench-cascade#readme"
+
+[project.scripts]
+colludebench-cascade = "colludebench-cascade.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/colludebench-cascade"]

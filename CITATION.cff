@@ -1,0 +1,41 @@
+cff-version: 1.2.0
+message: "If you use ColludeBench or build on the Stage 2b findings, please cite the preprint and this repository."
+type: software
+title: "ColludeBench: A pre-registered, RFC 3161-timestamped benchmark for measuring multi-agent LLM collusion"
+authors:
+  - family-names: Dhia
+    given-names: Hass
+    affiliation: "H.H.A. Applied Research Institute"
+    email: hass@hharesearch.org
+  - family-names: Hadi
+    given-names: Haedar
+    affiliation: "H.H.A. Applied Research Institute"
+    email: haedar@hharesearch.org
+  - family-names: Dhia
+    given-names: Ahmed
+    affiliation: "H.H.A. Applied Research Institute"
+    email: ahmed@hharesearch.org
+date-released: 2026-05-05
+license: MIT
+repository-code: "https://github.com/HHA-Applied-Research-Institute/colludebench-cascade"
+url: "https://hharesearch.org"
+keywords:
+  - multi-agent systems
+  - LLM safety
+  - algorithmic collusion
+  - AI oversight
+  - pre-registration
+  - RFC 3161
+  - cross-toolchain verification
+preferred-citation:
+  type: article
+  title: "Basin-of-Attraction Asymmetry in LLM-Agent Bertrand Pricing: Stage 2b of a Pre-Registered ColludeBench Pilot"
+  authors:
+    - family-names: Dhia
+      given-names: Hass
+    - family-names: Hadi
+      given-names: Haedar
+    - family-names: Dhia
+      given-names: Ahmed
+  year: 2026
+  notes: "H.H.A. Applied Research Institute Stage 2b preprint; manuscript hosted at github.com/HHA-Applied-Research-Institute/colludebench-cascade with full RFC 3161 stamp chain."

@@ -1,0 +1,31 @@
+# Why $5M-Tier — The Scale Justification
+
+Cascade dynamics are scale-dependent by definition: they emerge from network effects that do not exist at small agent counts. The cash budget is $4,356,500; compute capacity (8×H100 dedicated + burst, cash-equivalent ~$556K) is requested via Schmidt's "Access to Resources" in-kind channel, putting total program resources at the $5M Tier-2 scale. The table below distinguishes what is achievable at two funding levels — a statement of experimental physics, not a negotiating position.
+
+| Dimension | $1M Cash Budget | $5M-Tier Program Resources ($4.36M cash + Schmidt in-kind compute) | Scientific Justification |
+|-----------|-----------|-----------|--------------------------|
+| **Agent networks** | 2-32 agents | 2-256 agents | Cascade dynamics exhibit phase transitions at scale; 32-agent networks cannot produce the network-level contagion that characterizes deployments of hundreds of agents |
+| **Model families** | 2 open-weight | 5 open-weight + 4 frontier APIs | Architecture-specific vs. architecture-independent failure modes can only be identified through cross-family validation |
+| **Duration** | 24 months | 36 months | Longitudinal erosion requires extended observation; 36 months permits three experimental cycles, the minimum for reproducible erosion-curve estimation with inflection-point identification |
+| **Compute** | 4xH100 | 8xH100 dedicated + burst | 256-agent experiments with multiple MoE models require concurrent inference at scale; 4 GPUs make large-network experiments computationally infeasible at the turn counts erosion studies require |
+| **Team** | 5 people | 12 people (3 PIs at 25-30%, 3 postdocs, 2 senior engineers, 2 RAs, 0.5 PM) | Three parallel experimental tracks require three postdoc-led teams; 256-agent platform engineering requires two dedicated senior engineers |
+| **Knock-out design** | Not possible | 2x2x2 factorial with pathway-blocking interventions | Causal identification of cascade mechanisms requires interventions that suppress one failure pathway while leaving others intact; cost-prohibitive below $4M |
+| **Publications** | 4-6 papers | 8-12 papers across NeurIPS, ICML, ICLR, AIES | Three parallel tracks produce three independent publication streams; cross-track integration adds 2-3 contributions |
+| **Policy translation** | None | EU AI Act + NIST translation via governance subaward | Tier 2 expects field-shaping deliverables beyond publications; regulatory translation requires governance expertise the core team does not possess |
+| **Open-source platform** | Basic dataset release | Full ColludeBench-Cascade benchmark with 3-year maintenance | The ColludeBench-Cascade platform becomes field infrastructure — standardized environments, configurable populations, built-in metrics — enabling community replication |
+
+These differences are qualitative, not incremental.
+
+## Where the $5M goes
+
+**Personnel — $3,035,000 (69.7%).** Three postdocs (Collusion/Game Theory 36mo; Norm Erosion/Longitudinal 36mo; Detection Methods 24mo from Year 2) execute the three parallel experimental tracks. Two senior engineers ($1.1M combined) build inter-agent interception middleware, configurable topology controllers, real-time PID measurement pipelines, and 256-agent experiment controllers — infrastructure that does not exist in any current framework. The remaining personnel (3 PIs at 25-30%, 2 RAs, 0.5 PM) provide scientific direction, daily execution, and multi-institution coordination. At $1.67M/year for ~10.5 FTE the per-researcher cost is below NSF AI Institute norms.
+
+**Compute (cash) — $50,000 (1.1%); 8×H100 cluster + burst requested in-kind via Schmidt's "Access to Resources" channel (~$556K commercial-cloud equivalent).** Cash covers storage, data-egress, and orchestration not bundled into in-kind GPU allocations. The 8×H100 80GB cluster (640 GB VRAM, 128+ concurrent agent instances at 7B-17B active MoE, INT4/MXFP4) plus burst capacity enables 256-agent peak experiments: at 32 agents one H100 serves all at sub-second latency; at 256 agents over 5,000-turn erosion studies, 4-GPU runtime exceeds 8 hours — infeasible for 8,250+ runs. Post-award CAIS supplementary-access path and cash-reactivation pathway in `compute-strategy.md`.
+
+**Subawards — $350,000 (8.0%).** Two branches selected via open RFP within the first six months of award; selection criteria published as part of the institute's open methodology. **Branch X — Game Theory ($225K):** one postdoc + 0.5 faculty grounding behavioral detection in formal collusion models (Nash equilibria, mechanism design); selection criteria require prior publication on multi-agent strategic interaction. **Branch Y — Governance ($125K):** 0.25 FTE policy researcher producing NIST AI Safety standards engagement + EU AI Act Article 73 technical-annex contributions + 2–3 policy briefs; selection criteria require documented record in AI governance / policy translation. Schmidt's 10% indirect-cost cap is built into both selection criteria; selection-after-award matches partner choice to experimental needs as they crystallize from Stage 2b → Stage 3.
+
+**Other lines** (API credits, travel, ColludeBench-Cascade platform external work, equipment, publications, external methodology consultations) total $525,500 and are itemized in the attached BUDGET.xlsx.
+
+## $3M Fallback
+
+At $3M the program retains the cluster but loses burst capacity, retains 2 postdocs but drops the detection-methods track, retains one engineer (forcing sequential platform development), reduces frontier validation from 5 families to 3, shortens longitudinal erosion studies from 5,000 to 2,000 turns, drops policy translation, and releases datasets without the full ColludeBench-Cascade platform. The most consequential loss is the knock-out factorial — the only design that distinguishes genuine cascade effects from the simpler explanation that all three failure modes increase under network-complexity confounding. At $3M we document that cascade failures exist; we cannot establish causally and mechanistically how they propagate, when they become irreversible, and what practitioners can do to stop them. The scale matches the phenomenon.
