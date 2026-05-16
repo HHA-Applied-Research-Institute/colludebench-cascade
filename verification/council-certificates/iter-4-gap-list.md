@@ -108,7 +108,7 @@ Mostly cosmetic polish items deferred to post-iter-5 final pass.
    openssl ts -reply -in verification/pre-registrations/osf-stage2b-addendum-2026-05-04.md.tsr -text 2>&1 | grep "Time stamp"
    # expected: Time stamp: May  4 05:36:42 2026 GMT
    git log --oneline -8 <dev-branch>
-   # expected sequence with 2226a21 (stamp commit) topologically before §5.2.1-update commit
+   # expected sequence with the stamp commit topologically before §5.2.1-update commit
    bun primary CoT-residualization analyzer (private dev tree)
    # expected output (key fields):
    #   conditions.GATE-5.mean_words: 195.15 [194.44, 195.87]
