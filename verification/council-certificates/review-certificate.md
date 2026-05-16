@@ -1,7 +1,7 @@
 # Review Certificate
 
 **Project:** ColludeBench Stage 2b preprint — Schmidt Sciences Trustworthy AI RFP submission evidence
-**Branch:** `hr/stage-2-gate-experiment` at commit (post-iter-5 fix) — see `git log` for tip
+**Branch:** `<dev-branch>` at commit (post-iter-5 fix) — see `git log` for tip
 **Iterations:** 5 (Council REVIEW workflow per AppliedResearch Review.md spec)
 **Final status:** CONDITIONAL — user judgment ratified
 **Convergence:** NOT PROVEN under the two-in-a-row criterion (iter-4 NOT clean + iter-5 NOT clean by formal Council standard); user override invoked per Schmidt-RFP-focus filter (preprint serves as supporting evidence to the proposal, not as standalone academic publication; remaining issues are venue-conditional polish, not RFP submission gates).
@@ -14,15 +14,15 @@
 
 | Iteration | Verdict | Findings | Resolution |
 |-----------|---------|----------|------------|
-| 1 | NOT clean | 10 CRITICAL | Track A (auto-fixable, `2211504`) + Track B (Hass-approved, `1945ba4`) |
-| 2 | LOW-only | 3 single-sentence polish edits | Iter-2 commit `c754e29` |
-| 3 | NOT clean | ~10 HIGH | Track C cleanup (`66111c5`) + 5 J-items deferred to Haedar |
-| 4 | NOT clean | 1 CRITICAL + 11 HIGH | Tier 1+2 fix batch + Tier 3 #4+#5 + 2 commits (`2226a21`, `e19b20f`, `8428f7d`) |
+| 1 | NOT clean | 10 CRITICAL | Track A (auto-fixable, the Track A commit) + Track B (Hass-approved, the Track B commit) |
+| 2 | LOW-only | 3 single-sentence polish edits | Iter-2 commit the iter-2 commit |
+| 3 | NOT clean | ~10 HIGH | Track C cleanup (the Track C commit) + 5 J-items deferred to Haedar |
+| 4 | NOT clean | 1 CRITICAL + 11 HIGH | Tier 1+2 fix batch + Tier 3 #4+#5 + 2 commits (the iter-4 batch-1 commit, the iter-4 batch-2 commit, the iter-4 batch-3 commit) |
 | 5 | NOT clean | 3 CRITICAL + 10 HIGH | 1 surgical Q-learner contradiction fix + SR-M-8 entry + this CONDITIONAL certificate |
 
 ## Resolved across iterations
 
-Across all 5 iterations, ~32 substantive findings (CRITICAL + HIGH) were applied or addressed. Full audit trail at `.reviews/iter-4-gap-list.md` (iter-4 findings + per-finding resolution mapping). RFC 3161 stamp chain integrity verified at iter-5 by Methods/Reproducibility reviewer: 6 addenda stamps + 2 pre-registration stamps, all `Status: Granted`, all topologically anterior to the result commits they govern.
+Across all 5 iterations, ~32 substantive findings (CRITICAL + HIGH) were applied or addressed. Full audit trail at `verification/council-certificates/iter-4-gap-list.md` (iter-4 findings + per-finding resolution mapping). RFC 3161 stamp chain integrity verified at iter-5 by Methods/Reproducibility reviewer: 6 addenda stamps + 2 pre-registration stamps, all `Status: Granted`, all topologically anterior to the result commits they govern.
 
 ## Unresolved at exit (deferred to journal extension or proposal context)
 
@@ -46,10 +46,10 @@ These are the iter-5 findings not addressed by the Q-learner-fix + SR-M-8 surgic
 ### MEDIUM deferred (~15)
 Catalog in iter-5 reviewer outputs (per-persona findings tables). All venue-conditional polish or registry/disclosure improvements. None block Schmidt RFP submission.
 
-## Surgical fixes applied at iter-5 exit (cb4238b → next commit)
+## Surgical fixes applied at iter-5 exit (the Stage 2b release commit + next commit)
 
 1. **§5.2.1 line 89:** Q-learner self-contradiction fix. "primary arbiter" → "joint arbiter alongside channel (i) cross-capability scaling"; explicit alignment with the necessity-vs-operativity decomposition in the prior paragraph (§5.2.1 line 86). Resolves DA CRITICAL #2 (open self-contradiction).
-2. **`.reviews/mechanistic-claims.md`:** SR-M-8 entry added for §5.4 Clause 4 (rate-vs-n monotonicity falsifier); registry summary updated 7 → 8. Resolves Methods/Reproducibility HIGH + Consistency MEDIUM (registry hygiene).
+2. **`verification/sr-m-registry.md`:** SR-M-8 entry added for §5.4 Clause 4 (rate-vs-n monotonicity falsifier); registry summary updated 7 → 8. Resolves Methods/Reproducibility HIGH + Consistency MEDIUM (registry hygiene).
 
 ## Why CONDITIONAL is the correct exit
 
@@ -59,7 +59,7 @@ The user override applied here is venue-conditional: the preprint serves as Schm
 
 ## Why Publish and PreFlight will refuse this certificate
 
-PreFlight.md HARD GATE and Publish.md Step 0 both grep for `APPROVED FOR PUBLICATION`. A `CONDITIONAL` certificate fails both grep checks. This is intentional: a `CONDITIONAL` artifact may be referenced/cited in the Schmidt proposal package but does not open the standalone Publish or Outreach gates without a user override documented in `.reviews/user-override-2026-05-04.md` (the override rationale is captured here in this certificate's "Why CONDITIONAL is the correct exit" section).
+PreFlight.md HARD GATE and Publish.md Step 0 both grep for `APPROVED FOR PUBLICATION`. A `CONDITIONAL` certificate fails both grep checks. This is intentional: a `CONDITIONAL` artifact may be referenced/cited in the Schmidt proposal package but does not open the standalone Publish or Outreach gates without a user override documented in `verification/council-certificates/user-override-2026-05-04.md` (the override rationale is captured here in this certificate's "Why CONDITIONAL is the correct exit" section).
 
 ## Path forward (post-Schmidt RFP)
 

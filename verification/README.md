@@ -21,7 +21,7 @@ The script walks all 8 SR-M claims + 3 cross-cutting practice claims from a clea
 ## Files
 
 - `claims-map.md` — Click-to-verify table; 11 rows
-- `sr-m-registry.md` — Mechanistic-claim registry (mirror of upstream `.reviews/mechanistic-claims.md`)
+- `sr-m-registry.md` — Mechanistic-claim registry
 - `pre-registrations/README.md` — RFC 3161 verbatim policy + file index
 - `pre-registrations/osf-*.md` — 8 pre-registration documents
 - `stamps/*.tsr` — 8 corresponding RFC 3161 timestamp tokens

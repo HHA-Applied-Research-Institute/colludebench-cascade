@@ -49,8 +49,7 @@ The script walks all 8 SR-M claims + 3 cross-cutting practice claims and exits 0
 - `runner/` — 9 TypeScript modules (config-parser, demand-model, history-builder, index, round-executor, topology, trace-logger, types, _inference)
 - `experiments/` — 44 pre-registered experiment specifications across 8 categories (A-contagion, B-topology, C-team-loyalty, D-hierarchy, E-games, F-trust-recovery, G-info-asymmetry, H-communication, GATE)
 - `verifiers/` — Python/SciPy reference verifiers (cross-toolchain integrity layer)
-- `results-canonical/` — Stage 2b stamped dataset (n=15 GATE-2, n=30 GATE-5; merged 2026-04-25)
-- `tests/` — Conformance + unit tests
+- `results-canonical/` — Stage 2b stamped GATE-2 dataset (n=15, n=2 agents, 50 rounds; merged 2026-04-25). The GATE-5 dataset (n=30, n=5 agents) is reserved for the journal-version release; SciPy verifiers reproduce its analytic outputs from the locked traces on request.
 
 ## Citing
 

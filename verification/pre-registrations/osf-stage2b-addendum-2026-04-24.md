@@ -50,7 +50,7 @@ Per the parent pre-registration, the 2026-04-23 Gate-2 2b run is formally a **pr
 
 ---
 
-## 2. Runtime-Hardening Upgrades (Committed 2026-04-24, commit `6c23513`)
+## 2. Runtime-Hardening Upgrades (Committed 2026-04-24, commit the runtime-hardening commit)
 
 The following instrumentation and control-flow upgrades are pre-committed here to establish that they land BEFORE the re-run begins, and are scientifically equivalent to the pre-registered protocol (they do not change experimental parameters, only failure-detection and data integrity).
 
@@ -116,7 +116,7 @@ Where `<FIRST_REP_INDEX>` is 1, 6, or 11 per the allocation in P1.
 4. Reports each attempt in the final methodology section.
 
 **P5 — Trace merge and analysis.** Upon successful completion of all three slices:
-1. All three teammates commit their `traces.jsonl` + `results.json` to `hr/stage-2-gate-experiment`.
+1. All three teammates commit their `traces.jsonl` + `results.json` to `<dev-branch>`.
 2. Hass runs `pilot/merge-traces.ts` to produce the unified `traces.jsonl` and `results.json` with the scientific invariants enforced (disjoint reps, matching `experiment_id`, matching config signature).
 3. `pilot/analyze-gate-2b.ts --gate2 <merged-results.json>` runs on the unified data to produce the pre-registered co-primary outcomes.
 
@@ -159,7 +159,7 @@ No experimental parameter is modified; only failure-detection, data integrity, a
 - [ ] Halt + rerun protocol followed on slice halts (§3 P4).
 - [ ] Merge + analyze per §3 P5.
 - [ ] Host-effect check (Fisher's exact) reported if challenged (§3 P6).
-- [ ] Runtime-hardening upgrades U1–U8 landed in commit `6c23513` BEFORE re-run kickoff.
+- [ ] Runtime-hardening upgrades U1–U8 landed in commit the runtime-hardening commit BEFORE re-run kickoff.
 - [ ] 2026-04-23 protocol-violation event documented at `pilot/admin/team-notes/2026-04-24-gate-2-2b-protocol-violation.md` and in preprint Limitations.
 
 ---
@@ -171,7 +171,7 @@ No experimental parameter is modified; only failure-detection, data integrity, a
    ```
    bun pilot/admin/stamp-preregistration.ts pilot/admin/osf-stage2b-addendum-2026-04-24.md
    ```
-3. Both `.md` and `.md.tsr` committed to `hr/stage-2-gate-experiment` BEFORE the distributed Gate-2 2b re-run is launched.
+3. Both `.md` and `.md.tsr` committed to `<dev-branch>` BEFORE the distributed Gate-2 2b re-run is launched.
 4. The `{file}.md.tsr` token, once committed, is independently verifiable via OpenSSL against FreeTSA's public certificate chain; any modification to `{file}.md` after stamping invalidates the token.
 
 ---
@@ -181,6 +181,6 @@ No experimental parameter is modified; only failure-detection, data integrity, a
 - Parent pre-reg: `pilot/admin/osf-preregistration-stage2b-draft.md` (+ `.tsr`, 2026-04-20)
 - Addendum #1: `pilot/admin/osf-stage2b-addendum-2026-04-23.md` (+ `.tsr`, 2026-04-23)
 - Protocol-violation note: `pilot/admin/team-notes/2026-04-24-gate-2-2b-protocol-violation.md`
-- Runtime-hardening commit: `6c23513` on `hr/stage-2-gate-experiment`
+- Runtime-hardening commit: the runtime-hardening commit on `<dev-branch>`
 - Failed-run traces: `pilot/results/stage2b-gate-2026-04-23-FAILED-ratelimit/`
 - Panel context: `working/literature/panel-runs/2026-04-21-hassan-latency-swap.md`

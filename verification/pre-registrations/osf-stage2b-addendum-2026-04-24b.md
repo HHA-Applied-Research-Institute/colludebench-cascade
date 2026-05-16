@@ -96,7 +96,7 @@ These descriptive statistics are reported even if Fisher's exact yields a non-si
 
 - **Parent pre-reg (2026-04-20):** locks co-primary outcomes, sampling plan, convergence criterion, regime classifier, 5% parse-failure halt rule. Unchanged.
 - **Addendum #1 (2026-04-23):** locks bootstrap k-selection, Fisher-z CIs, Wu 2025 mechanism, latency caveat, single-model-family caveats. Unchanged.
-- **Addendum #2 (2026-04-24):** locks distributed-execution protocol, runtime instrumentation upgrades (commit `6c23513`), Fisher's exact host-effect test availability. Unchanged except strengthened by §B below (Fisher's exact is now *unconditional*, not only on reviewer challenge).
+- **Addendum #2 (2026-04-24):** locks distributed-execution protocol, runtime instrumentation upgrades (commit the runtime-hardening commit), Fisher's exact host-effect test availability. Unchanged except strengthened by §B below (Fisher's exact is now *unconditional*, not only on reviewer challenge).
 - **Addendum #3 (2026-04-24, this file):** adds survivor-rep consistency check (§A) and unconditional per-host reporting + Fisher's exact (§B). No experimental parameter modified.
 
 ---
@@ -119,7 +119,7 @@ These descriptive statistics are reported even if Fisher's exact yields a non-si
    ```
    bun pilot/admin/stamp-preregistration.ts pilot/admin/osf-stage2b-addendum-2026-04-24b.md
    ```
-3. Both `.md` and `.md.tsr` committed to `hr/stage-2-gate-experiment` BEFORE any teammate launches their distributed Gate-2 2b slice.
+3. Both `.md` and `.md.tsr` committed to `<dev-branch>` BEFORE any teammate launches their distributed Gate-2 2b slice.
 4. Verification via OpenSSL against FreeTSA's public certificate chain; any modification to `{file}.md` after stamping invalidates the token.
 
 ---
@@ -131,4 +131,4 @@ These descriptive statistics are reported even if Fisher's exact yields a non-si
 - Addendum #2: `pilot/admin/osf-stage2b-addendum-2026-04-24.md` (+ `.tsr`)
 - Protocol-violation note: `pilot/admin/team-notes/2026-04-24-gate-2-2b-protocol-violation.md`
 - Failed-run survivor traces: `pilot/results/stage2b-gate-2026-04-23-FAILED-ratelimit/EXP-GATE-2-2b/traces.jsonl` (rows where `repetition ∈ {1, 2}` AND `parse_success=true`)
-- Runtime-hardening commit: `6c23513` on `hr/stage-2-gate-experiment`
+- Runtime-hardening commit: the runtime-hardening commit on `<dev-branch>`

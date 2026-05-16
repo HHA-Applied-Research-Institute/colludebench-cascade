@@ -26,7 +26,7 @@ openssl ts -verify -in verification/stamps/<name>.tsr \
 
 ### 2. Pre-Committed Mechanistic-Claim Registry (SR-M)
 
-Every load-bearing claim has an entry in `verification/sr-m-registry.md` (mirror of the private `.reviews/mechanistic-claims.md`) with:
+Every load-bearing claim has an entry in `verification/sr-m-registry.md` with:
 - The claim text verbatim from the paper
 - A primary-source numeric target
 - A falsification test path (file + decision rule)
@@ -50,15 +50,15 @@ Five iterations against persona panels (DataScientist + Statistician/Algorithmis
 
 When work transitions across phases (Stage 2b preprint → Schmidt proposal compression; Stage 3 dataset → cross-model paper), the Council convenes again — past CLEAN does not transfer across context. This protects against residual Lakatosian rescues that would have been visible to a fresh-context reviewer but not to one anchored in prior iterations.
 
-## Pre-Commit Hooks
+## Discipline (Internal Practice)
 
-Three pre-commit hooks run on every commit touching analyzer or claim files:
+The team enforces three integrity disciplines on every commit touching analyzer or claim files:
 
-- `scripts/registry-consistency-check.ts` — asserts each load-bearing claim has a corresponding SR-M registry entry with stamped pre-registration strictly anterior to the analyzer-output commit
-- `scripts/stamps-anteriority-check.ts` — walks every `.tsr` file and confirms stamp time precedes the result commit it governs
-- `scripts/secret-scan.ts` — refuses commits with API keys, internal Slack URLs, PII, or absolute home-directory paths
+- **Registry consistency** — every load-bearing claim has a corresponding SR-M registry entry with stamped pre-registration strictly anterior to the analyzer-output commit
+- **Stamp anteriority** — every `.tsr` file's stamp time strictly precedes the result commit it governs
+- **Secret hygiene** — no API keys, internal URLs, PII, or absolute home-directory paths in committed text
 
-The same checks run in CI on every PR via `.github/workflows/integrity-check.yml`.
+These run as team-internal pre-commit verification (the canonical implementations live in the team's private development repository and are mirrored to public CI on a later release milestone).
 
 ## How to Land a Change
 
@@ -69,8 +69,7 @@ The same checks run in CI on every PR via `.github/workflows/integrity-check.yml
    - RFC-3161-stamp the updated registry entry
    - Verify stamp time is strictly anterior to the analyzer-output commit time
 4. Open a PR. The PR template asks: "Is this a transition? Does it need re-Council?"
-5. The pre-commit hooks must pass. The `integrity-check` and `conformance-test` GitHub Actions must be green.
-6. The H.H.A. team reviews substantive scientific changes via the named-expert Council pattern before merge.
+5. The H.H.A. team reviews substantive scientific changes via the named-expert Council pattern before merge.
 
 ## Code of Conduct
 

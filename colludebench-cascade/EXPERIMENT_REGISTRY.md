@@ -1,6 +1,6 @@
 # ColludeBench Experiment Registry
 
-Total: 39 experiments across 8 categories
+Total: 44 experiments across 9 categories (A-contagion, B-topology, C-team-loyalty, D-hierarchy, E-games, F-trust-recovery, G-info-asymmetry, H-communication, GATE)
 Protocol: Sterile Protocol v4 (universal system prompts, all variables in user prompt, standard defection sentence), n=10, chain-of-thought reasoning
 Model: Claude Haiku (fast) for pilot; escalate to Sonnet/Opus for significant results
 Replication: Full independent replication by Haedar Hadi
@@ -83,6 +83,9 @@ Manipulates: observability (full vs. partial).
 Does the ability to communicate (and its cost) change collusion rates?
 Manipulates: communication mode (none, cheap talk, costly signaling).
 
+### [GATE](experiments/GATE/) (5 specs)
+Stage 2 / 2b GATE protocol — the 50-round Bertrand-pricing experiment at $n=2$ and $n=5$ that produced the locked Stage 2b dataset. Includes pre-flight pre-registration variants (EXP-GATE-5-2b-preflight.md) and the locked 2b protocols (EXP-GATE-5-2b.md, EXP-GATE-2-2b.md). See `paper/main.pdf` §3-§5 for the analysis built on the GATE-2 canonical data shipping at `results-canonical/stage2b-gate-merged/EXP-GATE-2-2b/`.
+
 ## Execution Protocol
 
 1. **Pilot run (n=10):** Hass runs each experiment 10 times with Haiku
@@ -164,7 +167,7 @@ Every design choice in this registry is grounded in published research. Citation
 ## File Structure
 
 ```
-pilot/
+colludebench-cascade/
   EXPERIMENT_REGISTRY.md          <-- this file
   experiments/
     A-contagion/

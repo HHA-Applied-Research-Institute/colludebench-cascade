@@ -11,7 +11,7 @@ Not all trace files include explicit `model` and `provider` fields in the JSONL 
 
 ## Per-Researcher Provenance
 
-### Hass Dhia (branches: main, hd/*)
+### Hass Dhia
 
 | Data | Model | Provider | Evidence | Provenance in Traces |
 |------|-------|----------|----------|---------------------|
@@ -22,7 +22,7 @@ Not all trace files include explicit `model` and `provider` fields in the JSONL 
 
 **Confirmation:** All Hass data was generated through the inference adapter at `colludebench-cascade/runner/_inference.ts`, which calls `claude --print --model claude-haiku-4-5-20251001` for the `fast` tier.
 
-### Haedar Hadi (branch: hr/experiment-replication-n100)
+### Haedar Hadi (replication track)
 
 | Data | Model | Provider | Evidence | Provenance in Traces |
 |------|-------|----------|----------|---------------------|
@@ -30,9 +30,9 @@ Not all trace files include explicit `model` and `provider` fields in the JSONL 
 | Sonnet escalation (7 experiments) | Claude Sonnet (claude-sonnet-4-5-20251001) | Anthropic API | Separate results directory `sonnet-escalation-*` | `tier=fast` only — model inferred from directory name |
 | Sonnet deception ladder (n=30, Mar 26) | Claude Sonnet | Anthropic API | run-sonnet-deception.ts source | Documented in EXPERIMENT-OVERVIEW-2026-03-26.md |
 
-**Confirmation:** Haedar's runner at `pilot/runner/round-executor.ts` on his branch uses the Anthropic API directly (not `claude --print`). His `Inference.ts` maps `fast` to `claude-haiku-4-5-20251001` and `standard` to `claude-sonnet-4-5-20251001`. All replication data is Haiku. Sonnet data is in separate `sonnet-escalation-*` directories.
+**Confirmation:** Haedar's replication runner uses the Anthropic API directly (not `claude --print`). The replication Inference layer maps `fast` to `claude-haiku-4-5-20251001` and `standard` to `claude-sonnet-4-5-20251001`. All replication data is Haiku. Sonnet data is in separate Sonnet-escalation outputs.
 
-### Ahmed Dhia (branch: ad/gap-012-portal-verification)
+### Ahmed Dhia (portal-verification track)
 
 | Data | Model | Provider | Evidence | Provenance in Traces |
 |------|-------|----------|----------|---------------------|
@@ -42,7 +42,7 @@ Not all trace files include explicit `model` and `provider` fields in the JSONL 
 | Category B — Ollama runs (Apr 5) | Llama 3.1 8B | Ollama (local GPU) | Text message: "Using ollama now with my gpu" | Stopped at rep 8/10, patches created to identify |
 | Category B — Groq runs (if any) | Llama 3.1 8B Instant | Groq API (free tier) | Inference.ts GROQ_MODELS config | To be confirmed — may not have been used |
 
-**Confirmation:** Ahmed's `Inference.ts` (on his branch) exports `ACTIVE_PROVIDER` and `ACTIVE_MODEL` constants resolved at module load time from the `INFERENCE_PROVIDER` env var. Newer runs (post Apr 5) include `model` and `provider` fields in traces. Earlier runs do not. Ahmed confirmed via text that Ollama B1 data was stopped at rep 8/10 due to quality difference and re-run with Claude.
+**Confirmation:** Ahmed's Inference layer exports `ACTIVE_PROVIDER` and `ACTIVE_MODEL` constants resolved at module load time from the `INFERENCE_PROVIDER` env var. Newer runs (post Apr 5) include `model` and `provider` fields in traces. Earlier runs do not. Ahmed confirmed via text that Ollama B1 data was stopped at rep 8/10 due to quality difference and re-run with Claude.
 
 ## Cross-Model Data Separation
 

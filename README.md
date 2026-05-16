@@ -14,12 +14,11 @@
 
 ```
 colludebench-cascade/
-├── paper/                 # Stage 2b preprint (LaTeX source + main.pdf + figures + REPRODUCE.md)
-├── colludebench-cascade/          # Benchmark — 9 TS runner files, 44 experiment specs, SciPy verifiers
+├── paper/                 # Stage 2b preprint (LaTeX source + main.pdf + figures)
+├── colludebench-cascade/  # Benchmark — TS runner (package.json), 44 experiment specs, SciPy verifiers
 ├── verification/          # Click-to-verify map + 8 RFC 3161 stamps + Council certificates
 ├── proposal/              # Public abstract + Schmidt RFP framing
-├── pypi/                  # Python wrapper / placeholder
-└── scripts/               # Pre-commit integrity hooks (registry-consistency, stamps-anteriority)
+└── pypi/                  # Python wrapper / placeholder
 ```
 
 ## Quick start
@@ -34,7 +33,7 @@ bash verification/reproduce/verify-stage2b.sh
 # Run a dry-run experiment
 cd colludebench-cascade
 bun install
-bun run runner/index.ts --spec experiments/GATE/EXP-GATE-5-2b.md --dry-run
+bun run runner/index.ts --spec experiments/GATE/EXP-GATE-2-2b.md --dry-run
 ```
 
 ## Citation

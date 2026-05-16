@@ -14,22 +14,9 @@ This directory contains the public-facing materials for H.H.A. Applied Research 
 
 This proposal directly answers Aim 3.2 Question 35 — *when and under what conditions do AI agents learn to collude, and what are the implications for oversight*. The cascade model unifying H1 (failure amplification), H2 (collusion detection), and H3 (norm erosion) is the structural answer; the 36-month research program operationalizes the empirical test.
 
-## Render command
+## Rendered PDF
 
-```bash
-cd proposal
-cat 01-abstract.md 02-the-problem.md 04-hypotheses.md 05-methodology.md \
-    09-outcomes.md 06-why-5m.md 07-team.md 10-timeline.md 11-budget.md \
-    12-responsible-research.md 13-references.md > /tmp/proposal.md
-
-pandoc /tmp/proposal.md \
-  --pdf-engine=xelatex \
-  -V geometry:margin=0.70in \
-  -V fontsize=10pt \
-  -V documentclass=article \
-  -H ../sections-compressed/render-template.tex \
-  -o PROPOSAL.pdf
-```
+The rendered proposal PDF is at `PROPOSAL_DRAFT.pdf` (15 pages, the same artifact uploaded to the Schmidt SurveyMonkey Apply portal). The canonical render pipeline (pandoc + xelatex with custom Unicode-mapping header) lives in the team's private submission tree and is not part of this public release; the rendered PDF here is the byte-exact public copy.
 
 ## Authorship
 

@@ -8,14 +8,14 @@ All notable changes to ColludeBench are documented here. The format is based on 
 - Initial public repository structure
 - Stage 2b preprint at `paper/main.pdf` (29 pages, post-iter-5 Council CONDITIONAL)
 - ColludeBench TypeScript runner (9 modules) at `colludebench-cascade/runner/`
-- 44 experiment specifications across 8 categories at `colludebench-cascade/experiments/`
+- 44 experiment specifications across 9 categories at `colludebench-cascade/experiments/` (A-contagion, B-topology, C-team-loyalty, D-hierarchy, E-games, F-trust-recovery, G-info-asymmetry, H-communication, GATE)
 - 9 SciPy reference verifiers at `colludebench-cascade/verifiers/`
 - 8-entry SR-M registry at `verification/sr-m-registry.md`
 - 6 RFC 3161-stamped addenda + 2 pre-registration stamps (8 total) at `verification/stamps/`
 - Council certificate (CONDITIONAL exit, post iter-5) at `verification/council-certificates/review-certificate.md`
 - Click-to-verify map at `verification/claims-map.md` (8 SR-M + 3 cross-cutting)
 - One-script verification at `verification/reproduce/verify-stage2b.sh`
-- Schmidt RFP submission proposal at `proposal/abstract.md`
+- Schmidt RFP submission proposal at `proposal/01-abstract.md` through `proposal/13-references.md`
 
 ## [Stage 2b — 2026-05-04]
 

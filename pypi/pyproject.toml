@@ -44,7 +44,7 @@ Issues = "https://github.com/HHA-Applied-Research-Institute/colludebench-cascade
 Documentation = "https://github.com/HHA-Applied-Research-Institute/colludebench-cascade#readme"
 
 [project.scripts]
-colludebench-cascade = "colludebench-cascade.cli:main"
+colludebench-cascade = "colludebench_cascade.cli:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/colludebench-cascade"]
+packages = ["src/colludebench_cascade"]

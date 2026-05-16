@@ -2,7 +2,7 @@
 
 > SR-M registry per AppliedResearch ReviewChecklist §SR-M and Review.md Step 2.7. Each entry registers a mechanistic claim with primary-source numeric target, falsification test, falsification condition, and pre-committed rescope fallback. The weakest-credible-commitment principle applies: `primary_source_target` is the weakest numeric target the paper itself commits to, not the strongest the cited source reports.
 >
-> **Domain adaptation note.** AppliedResearch's canonical SR-M assumes an RL/ML package with `tests/test_srm_*.py` files exercising the artifact's default initialization. This preprint is an empirical-economics study of LLM agents, not a trained-model release. The "test" for each mechanistic claim is therefore (a) the SciPy reference verifier already in `pilot/admin/verification/verify-*.py` for analysis-pipeline claims, and (b) the pre-committed Stage 4 cross-model replication design for mechanism claims that a single-model pilot cannot adjudicate. Both substitutes are explicitly named in each entry below.
+> **Domain adaptation note.** AppliedResearch's canonical SR-M assumes an RL/ML package with `tests/test_srm_*.py` files exercising the artifact's default initialization. This preprint is an empirical-economics study of LLM agents, not a trained-model release. The "test" for each mechanistic claim is therefore (a) the SciPy reference verifier already in `colludebench-cascade/verifiers/verify-*.py` for analysis-pipeline claims, and (b) the pre-committed Stage 4 cross-model replication design for mechanism claims that a single-model pilot cannot adjudicate. Both substitutes are explicitly named in each entry below.
 >
 > Step 0 (Metric Integrity) and Step 2.6 (PyPI Hygiene) are N/A for this preprint. Step 0's MV1-MV4 checks are for `results/training_results.json` from RL training; the analogous artifact here is the analyzer output verified by `verify-stage2b-2026-04-26.py` returning `ALL CLAIMS REPRODUCE: True`. Step 2.6 (PyPI sdist size, Dev Status badge, etc.) does not apply because no Python package is being released.
 
@@ -14,7 +14,7 @@
 
 **primary_source_target:** GATE-5 strict-converged rate $\geq 0.85$ (binomial) AND GATE-2 strict-converged rate $\leq 0.40$ (binomial), at the locked convergence criterion (`< 1\%` mean price change over 5 consecutive rounds, evaluated rolling) within 50 rounds.
 
-**falsification_test_path:** `pilot/analyze-gate-2b.ts` Step 2 against `pilot/results/stage2b-gate-merged-2026-04-25/`, cross-verified by `pilot/admin/verification/verify-stage2b-2026-04-26.py`.
+**falsification_test_path:** `primary TypeScript analyzer (private dev tree); SciPy reference at `colludebench-cascade/verifiers/verify-stage2b-2026-04-26.py`` Step 2 against `colludebench-cascade/results-canonical/stage2b-gate-merged/`, cross-verified by `colludebench-cascade/verifiers/verify-stage2b-2026-04-26.py`.
 
 **falsification_condition:** Either condition's strict-converged rate falls outside the bound above when re-derived under the locked criterion against the canonical merged dataset.
 
@@ -30,7 +30,7 @@
 
 **primary_source_target:** Gap-statistic resample recovery rate for $k=2$ at GATE-5 $\geq 0.70$ aggregated across $\geq 100$ resamples, OR $\geq 7/10$ resamples in the locked 10-resample procedure.
 
-**falsification_test_path:** `pilot/admin/verification/formalize-addendum1-2026-04-26.py` (locked 10-resample) and `pilot/admin/verification/n2-robustness-100resample-2026-04-27.py` (supplementary).
+**falsification_test_path:** `colludebench-cascade/verifiers/formalize-addendum1-2026-04-26.py` (locked 10-resample) and `colludebench-cascade/verifiers/n2-robustness-100resample-2026-04-27.py` (supplementary).
 
 **falsification_condition:** Either the locked 10-resample procedure recovers $k=2$ in $< 7$ resamples on the canonical merged dataset, OR the 100-resample sweep aggregated rate falls below 0.70.
 
@@ -46,7 +46,7 @@
 
 **primary_source_target (weakest-credible):** Sign of $r(\text{reasoning length}, \Delta_{\text{profit}})$ at GATE-5 is negative; the paper does NOT claim significance. Wu et al.\ 2025 simplicity-bias predicts a negative sign for tasks where the cooperative-pricing answer is representationally simpler.
 
-**falsification_test_path:** `pilot/admin/verification/formalize-addendum1-2026-04-26.py` §C correlations + `pilot/admin/verification/verify-formalize-2026-04-26.py`.
+**falsification_test_path:** `colludebench-cascade/verifiers/formalize-addendum1-2026-04-26.py` §C correlations + `colludebench-cascade/verifiers/verify-formalize-2026-04-26.py`.
 
 **falsification_condition:** Pre-registered (Addendum #1 §D, RFC 3161 stamped 2026-04-23): $r(\text{reasoning length}, \Delta_{\text{profit}}) > 0$ at GATE-5 falsifies simplicity-bias as the operative mechanism. NOT triggered ($r = -0.30$).
 
@@ -60,9 +60,9 @@
 
 **Claim text** (preprint §3.4, §3.7, §4.11, §6.5): "The independent Python/SciPy reference verifier returns ALL CLAIMS REPRODUCE: True across all six pre-registered claim categories ... at $|\Delta| \leq 5 \times 10^{-3}$. This does not constitute experiment-level reproducibility."
 
-**primary_source_target:** All numerical outputs from `pilot/analyze-gate-2b.ts`, `pilot/analyze-host-effect.ts`, `pilot/analyze-survivor-consistency.ts`, and the formalization script match the corresponding `pilot/admin/verification/verify-*.py` outputs to within $|\Delta| < 5 \times 10^{-3}$ tolerance, on the canonical merged dataset, on at least two independent host machines.
+**primary_source_target:** All numerical outputs from the primary TypeScript analyzers (gate-2b, host-effect, survivor-consistency, formalization — private dev tree) match the corresponding `colludebench-cascade/verifiers/verify-*.py` outputs to within $|\Delta| < 5 \times 10^{-3}$ tolerance, on the canonical merged dataset, on at least two independent host machines.
 
-**falsification_test_path:** `pilot/admin/verification/verify-stage2b-2026-04-26.py` final block: `ALL CLAIMS REPRODUCE: True`.
+**falsification_test_path:** `colludebench-cascade/verifiers/verify-stage2b-2026-04-26.py` final block: `ALL CLAIMS REPRODUCE: True`.
 
 **falsification_condition:** Any single discrepancy beyond $|\Delta| < 5 \times 10^{-3}$ between primary analyzer and SciPy verifier output halts the pipeline pending reconciliation.
 
@@ -78,7 +78,7 @@
 
 **primary_source_target:** Mean price for the relevant survivor and re-run reps falls within $\pm 0.05$ of the cooperation midpoint $p^{\text{mid}}_{n=2} = 1.6990$. This is a descriptive observation, not a mechanistic claim.
 
-**falsification_test_path:** `pilot/analyze-survivor-consistency.ts` per-rep mean-price computation against `pilot/results/stage2b-gate-2026-04-23-FAILED-ratelimit/` and `pilot/results/stage2b-gate-2b-rerun-hass/`.
+**falsification_test_path:** `primary TypeScript analyzer (private dev tree); SciPy reference at `colludebench-cascade/verifiers/verify-stage2b-2026-04-26.py`` per-rep mean-price computation against `earlier GATE-2 attempt traces (private dev tree; not part of canonical merged release)` and `GATE-2 re-run traces merged into canonical at `colludebench-cascade/results-canonical/stage2b-gate-merged/EXP-GATE-2-2b/``.
 
 **falsification_condition:** If mean price for any of the four survivor + re-run reps is more than $0.10$ from the cooperation midpoint, the round-level threshold-sensitivity reading is unsupportable for that rep and a different mechanism interpretation is required.
 
@@ -92,15 +92,15 @@
 
 **Claim text** (preprint §5.2 acknowledgment paragraph + §5.2.1): "The per-other-agent CoT cross-reference rate at $n=2$ (2.954 per CoT-round, 95% bootstrap CI [2.865, 3.045]) is approximately 5.8x the rate at $n=5$ (0.508, [0.500, 0.516]); CIs disjoint with GATE-2 higher; the §5.2 reading (a) initial formulation 'with $n=5$ agents the per-round price vector contains substantially more information than at $n=2$' is empirically reversed."
 
-**primary_source_target:** GATE-2 per-other-agent rate 95% bootstrap CI is disjoint from GATE-5 CI **with GATE-2 mean strictly greater than GATE-5 mean**, on the locked Stage 2b dataset (`pilot/results/stage2b-gate-2026-04-15/EXP-GATE-5-2b/traces.jsonl` + `pilot/results/stage2b-gate-merged-2026-04-25/EXP-GATE-2-2b/traces.jsonl`), under the regex pipeline pre-committed in Addendum #5 §A and the per-other-agent normalization in §A.4.
+**primary_source_target:** GATE-2 per-other-agent rate 95% bootstrap CI is disjoint from GATE-5 CI **with GATE-2 mean strictly greater than GATE-5 mean**, on the locked Stage 2b dataset (`GATE-5 locked traces (private dev tree; SciPy reproduction on request; canonical GATE-2 ships at `colludebench-cascade/results-canonical/`)` + `colludebench-cascade/results-canonical/stage2b-gate-merged/EXP-GATE-2-2b/traces.jsonl`), under the regex pipeline pre-committed in Addendum #5 §A and the per-other-agent normalization in §A.4.
 
-**falsification_test_path:** `pilot/analyze-cot-cross-references.ts` against the locked traces; output at `pilot/results/cot-cross-references-2026-05-03.json`. Decision rule per Addendum #5 §B.1.
+**falsification_test_path:** `primary TypeScript analyzer (private dev tree)` against the locked traces; output at `analyzer output JSON (private dev tree; SciPy reproduction at Stage 3)`. Decision rule per Addendum #5 §B.1.
 
 **falsification_condition:** CIs overlap (NULL) OR sign reverses (GATE-5 mean > GATE-2 mean — REVERSAL OF REVERSAL) under independent SciPy verifier (deferred per Addendum #5 §C).
 
 **rescope_fallback (pre-committed):** If CIs overlap on independent verification: §5.2 reading (a) softens to "candidate mechanism among several" per Addendum #5 §B.3 NULL branch. If sign reverses on independent verification: §5.2.1 reports the reversal-of-reversal verbatim. Stage 4 cross-model channels (i)/(ii) are unchanged in either case.
 
-**verification status:** EXPLORATORY — primary analyzer (`pilot/analyze-cot-cross-references.ts`) reports the REVERSAL branch fired per pre-committed Addendum #5 §B.3; SciPy verifier (`pilot/verify-cot-cross-references.py`) is pre-committed but deferred. SR-M promotion to PASS requires SciPy verifier reproduction. The Addendum #5 v1→v2 schema-validation note (§A.0) documents the pre-stamp regex widening; the stamp at SHA-256 `033cabda5fee0ee8c74d178ea2d69388e1dd5dfdf5084636c8860949c03eeedf` (May 4 03:38:12 2026 GMT, FreeTSA) precedes the analyzer JSON `generated_at` 2026-05-04T03:38:37Z by 25 seconds.
+**verification status:** EXPLORATORY — primary analyzer (`primary TypeScript analyzer (private dev tree)`) reports the REVERSAL branch fired per pre-committed Addendum #5 §B.3; SciPy verifier (`Stage 3 SciPy verifier (to be added to `colludebench-cascade/verifiers/`)`) is pre-committed but deferred. SR-M promotion to PASS requires SciPy verifier reproduction. The Addendum #5 v1→v2 schema-validation note (§A.0) documents the pre-stamp regex widening; the stamp at SHA-256 `033cabda5fee0ee8c74d178ea2d69388e1dd5dfdf5084636c8860949c03eeedf` (May 4 03:38:12 2026 GMT, FreeTSA) precedes the analyzer JSON `generated_at` 2026-05-04T03:38:37Z by 25 seconds.
 
 ---
 
@@ -110,7 +110,7 @@
 
 **primary_source_target:** Mean total CoT word counts have overlapping 95% bootstrap CIs across conditions (talk-volume null) AND per-condition mean residuals from the pooled OLS regression `rate ~ a + b * words` have disjoint 95% bootstrap CIs **with GATE-2 mean residual strictly greater than GATE-5 mean residual**, on the locked Stage 2b dataset under the regex pipeline pre-committed in Addendum #5 §A (byte-identical) and the residualization specification in Addendum #6 §A.
 
-**falsification_test_path:** `pilot/analyze-cot-residualized.ts` against the locked traces; output at `pilot/results/cot-residualized-2026-05-04.json`. Decision rule per Addendum #6 §B.
+**falsification_test_path:** `primary TypeScript analyzer (private dev tree)` against the locked traces; output at `analyzer output JSON (private dev tree; SciPy reproduction at Stage 3)`. Decision rule per Addendum #6 §B.
 
 **falsification_condition:** Residualized CIs overlap (RESIDUALIZED NULL) → §5.2.1 acknowledges the gap collapses under talk-volume control. OR sign reverses (GATE-5 residual > GATE-2 — RESIDUALIZED REVERSAL OF REVERSAL) → §5.2.1 acknowledges talk-volume drives the §5.2.1 reversal and refined reading (a') is NOT supported by Stage 2b data.
 
@@ -126,18 +126,18 @@
 
 **primary_source_target:** Strict-convergence rate $p_{\text{strict}}(n)$ at $n \in \{2, 3, 4, 5\}$ exhibits monotonic ordering ($p_{\text{strict}}(2) \leq p_{\text{strict}}(3) \leq p_{\text{strict}}(4) \leq p_{\text{strict}}(5)$ within Wilson 95% CI overlap tolerance), with $n = 3$ and $n = 4$ rates each having Wilson 95% CIs that overlap both the $n = 2$ and $n = 5$ Wilson 95% CIs (the bracketing condition).
 
-**falsification_test_path:** Stage 3 analyzer (deferred — `pilot/analyze-stage3-monotonicity.ts`, to be implemented in Stage 3 with $n_{\text{rep}} \geq 30$ at $n \in \{2, 3, 4, 5\}$ and horizon $\geq 100$ rounds).
+**falsification_test_path:** Stage 3 analyzer (deferred — `Stage 3 SciPy verifier (to be added to `colludebench-cascade/verifiers/` in Stage 3 release)`, to be implemented in Stage 3 with $n_{\text{rep}} \geq 30$ at $n \in \{2, 3, 4, 5\}$ and horizon $\geq 100$ rounds).
 
 **falsification_condition:** Non-monotonic ordering of the four point estimates OR $n = 3$ Wilson 95% CI not overlapping both $n = 2$ and $n = 5$ Wilson CIs OR same for $n = 4$.
 
 **rescope_fallback (pre-committed):** If Stage 3 produces non-monotonicity, the basin-width-by-agent-count framework is rescoped from "monotonic-in-$n$ structural property" to "endpoint-asymmetry between duopoly and small-oligopoly only" and §5.2 narrows the claim accordingly. If $n = 3$ or $n = 4$ falls outside the bracketing condition, the basin-width function is non-monotonic (consistent with a non-trivial agent-count interaction) and the framework requires a Stage 4 mechanistic refinement that the Stage 2b paper does not pre-commit.
 
-**verification status:** PRE-REGISTERED — Stage 3 falsification test deferred per §5.4 Clause 4; pre-registration is the §5.4 prose itself, RFC 3161 stamped via the iter-5 `cb4238b` commit chain (Addendum #6 stamp May 4 05:36:42 GMT, ancestor of `cb4238b`).
+**verification status:** PRE-REGISTERED — Stage 3 falsification test deferred per §5.4 Clause 4; pre-registration is the §5.4 prose itself, RFC 3161 stamped via the iter-5 the Stage 2b release commit commit chain (Addendum #6 stamp May 4 05:36:42 GMT, ancestor of the Stage 2b release commit).
 
 ---
 
 ## Registry summary
 
-8 mechanistic claims registered. All 8 have explicit primary-source numeric targets, falsification test paths, falsification conditions, and pre-committed rescope fallbacks. SR-M-1 through SR-M-5 are PASS status against the canonical merged dataset under the SciPy reference verifier. SR-M-6 and SR-M-7 are EXPLORATORY status (primary TypeScript analyzer fired the pre-committed branch verbatim; SciPy verifier deferred per Addendum #5 §C and Addendum #6 §C — promotion to PASS requires SciPy reproduction). SR-M-8 is PRE-REGISTERED status (Stage 3 falsification test deferred; pre-registration via §5.4 Clause 4 prose at iter-5 `cb4238b`, RFC 3161 stamped through the Addendum #6 stamp chain).
+8 mechanistic claims registered. All 8 have explicit primary-source numeric targets, falsification test paths, falsification conditions, and pre-committed rescope fallbacks. SR-M-1 through SR-M-5 are PASS status against the canonical merged dataset under the SciPy reference verifier. SR-M-6 and SR-M-7 are EXPLORATORY status (primary TypeScript analyzer fired the pre-committed branch verbatim; SciPy verifier deferred per Addendum #5 §C and Addendum #6 §C — promotion to PASS requires SciPy reproduction). SR-M-8 is PRE-REGISTERED status (Stage 3 falsification test deferred; pre-registration via §5.4 Clause 4 prose at iter-5 the Stage 2b release commit, RFC 3161 stamped through the Addendum #6 stamp chain).
 
 The registry is authored under the weakest-credible-commitment discipline: each `primary_source_target` is the weakest numeric target the paper literally commits to (sign-only for SR-M-3; rate bounds rather than exact values for SR-M-1 and SR-M-2; CI-disjoint-with-direction for SR-M-6 and SR-M-7). This avoids Phase-A overreach that would create SR-M3-style failures.
