@@ -24,7 +24,7 @@ python colludebench-cascade/verifiers/verify-stage2b-2026-04-26.py \
   colludebench-cascade/results-canonical/stage2b-gate-merged/
 
 # 3. Read the review certificate state
-cat verification/council-certificates/review-certificate.md
+cat verification/review-certificates/review-certificate.md
 
 # 4. Reproduce all SR-M checks from a clean clone (one-script)
 bash verification/reproduce/verify-stage2b.sh
@@ -52,7 +52,7 @@ bash verification/reproduce/verify-stage2b.sh
 | ID | Plain-English claim | Verification path | Status |
 |----|---------------------|--------------------|--------|
 | **CC-1** | RFC 3161 stamp chain integrity: 6 addenda + 2 pre-registration stamps, all `Status: Granted` from FreeTSA, each topologically anterior to the result it governs. | `for f in verification/stamps/osf-*.md.tsr; do openssl ts -verify -in $f -data verification/pre-registrations/$(basename ${f%.tsr}) -CAfile verification/stamps/freetsa.crt; done` (8 invocations; 6 return `Verification: OK`, 2 redacted public versions intentionally fail imprint match with originals available on request). | PASS — verified at release |
-| **CC-2** | Structured multi-iteration adversarial review: 5 iterations against eight pre-defined methodological dimensions (statistical algorithm validity, computer-science peer-review standards, first-principles consistency, industrial-organization domain expertise, devil's-advocate stress-testing, methods and reproducibility audit, internal consistency, writing rigor); CONDITIONAL exit cert with documented user-override rationale; 32 substantive findings (CRITICAL + HIGH) applied across iters; iter-4 gap list traces per-finding resolution. | `cat verification/council-certificates/review-certificate.md`; `cat verification/council-certificates/iter-4-gap-list.md`. | DOCUMENTED — CONDITIONAL exit; iter-5 surfaced 3 CRITICAL + 10 HIGH; surgical Q-learner contradiction fix + SR-M-8 entry applied; user override invoked under venue-conditional Schmidt-RFP-focus filter; all unresolved findings catalogued under "Unresolved at exit" with deferral rationale |
+| **CC-2** | Structured multi-iteration adversarial review: 5 iterations against eight pre-defined methodological dimensions (statistical algorithm validity, computer-science peer-review standards, first-principles consistency, industrial-organization domain expertise, devil's-advocate stress-testing, methods and reproducibility audit, internal consistency, writing rigor); CONDITIONAL exit cert with documented user-override rationale; 32 substantive findings (CRITICAL + HIGH) applied across iters; iter-4 gap list traces per-finding resolution. | `cat verification/review-certificates/review-certificate.md`; `cat verification/review-certificates/iter-4-gap-list.md`. | DOCUMENTED — CONDITIONAL exit; iter-5 surfaced 3 CRITICAL + 10 HIGH; surgical Q-learner contradiction fix + SR-M-8 entry applied; user override invoked under venue-conditional Schmidt-RFP-focus filter; all unresolved findings catalogued under "Unresolved at exit" with deferral rationale |
 | **CC-3** | Self-falsification of own primary mechanism reading: a pre-registered text-based test (Addendum #5) was *expected* to support the §5.2 reading (a) cross-sectional-signal formulation and *empirically reversed it*. The team published the reversal verbatim in §5.2.1 and applied a refined reading (a') that survived a second pre-committed test (Addendum #6 talk-volume residualization). | Trace: §5.2.1 paragraph in `paper/sections/05-discussion.tex` → Addendum #5 §B.3 NULL/REVERSAL/REVERSAL-OF-REVERSAL branches at `verification/pre-registrations/osf-stage2b-addendum-2026-05-03.md` → Addendum #6 §B branches at `verification/pre-registrations/osf-stage2b-addendum-2026-05-04.md`. | DEMONSTRATED — both Addendum #5 and Addendum #6 stamps precede the corresponding analyzer outputs; the REVERSAL branch and REVERSAL-SURVIVES-RESIDUALIZATION branch are documented in the SR-M-6 and SR-M-7 entries as EXPLORATORY-pending-SciPy-reproduction-at-Stage-3; the stamped pre-registration of every plausible outcome is what makes this a real falsification rather than a Lakatosian rescue |
 
 ---
@@ -72,7 +72,7 @@ bash verification/reproduce/verify-stage2b.sh
 
 ## review certificate state
 
-`verification/council-certificates/review-certificate.md` — **CONDITIONAL** (post-iter-5)
+`verification/review-certificates/review-certificate.md` — **CONDITIONAL** (post-iter-5)
 - 5 structured-review iterations completed
 - ~32 substantive findings applied across iters 1–5
 - iter-5 fresh CRITICAL findings: 1 surgical fix (Q-learner self-contradiction at §5.2.1) + SR-M-8 registry entry (Phys Clause 4) applied at exit; remaining CRITICAL items (hedge-stack collapse, workshop-sizing fork) deferred under Schmidt-RFP-focus filter as venue-conditional polish

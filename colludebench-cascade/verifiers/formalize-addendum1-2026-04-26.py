@@ -39,10 +39,10 @@ from scipy.stats import norm
 from sklearn.cluster import KMeans
 from sklearn.mixture import GaussianMixture
 
-REPO = os.environ.get("STAGE2B_REPO") or str(Path(__file__).resolve().parents[3])
+REPO = os.environ.get("STAGE2B_REPO") or str(Path(__file__).resolve().parents[2])
 
-GATE5_TRACES = f"{REPO}/pilot/results/stage2b-gate-2026-04-15/EXP-GATE-5-2b/traces.jsonl"
-GATE2_TRACES = f"{REPO}/pilot/results/stage2b-gate-merged-2026-04-25/EXP-GATE-2-2b/traces.jsonl"
+GATE5_TRACES = f"{REPO}/colludebench-cascade/results-canonical/stage2b-gate-merged/EXP-GATE-5-2b/traces.jsonl"
+GATE2_TRACES = f"{REPO}/colludebench-cascade/results-canonical/stage2b-gate-merged/EXP-GATE-2-2b/traces.jsonl"
 
 # Calvano model
 A, A0, MU, COST, BETA = 2.0, 0.0, 0.25, 1.0, 100.0
@@ -543,7 +543,7 @@ def main():
     results["GATE-2"] = analyze_condition("GATE-2 2b (n=2, n_reps=15)", GATE2_TRACES, 2)
 
     # Persist machine-readable outputs
-    out_path = f"{REPO}/pilot/admin/verification/formalize-addendum1-output-2026-04-26.json"
+    out_path = f"{REPO}/colludebench-cascade/results-canonical/stage2b-gate-merged/formalize-addendum1-output-2026-04-26.json"
     serializable = {}
     for cond, data in results.items():
         if data is None:

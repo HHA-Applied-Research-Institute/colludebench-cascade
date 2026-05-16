@@ -15,7 +15,7 @@ The Stage 2b GATE-2 canonical dataset is the load-bearing public artifact for re
 | `results-canonical/stage2b-gate-merged/EXP-GATE-2-2b/results.json` | Per-rep summary statistics (15 reps × $n=2$ agents × 50 rounds): convergence flags, $\Delta_{\text{profit}}$, regime classifications, basin assignments, mean price trajectories. |
 | `results-canonical/stage2b-gate-merged/EXP-GATE-2-2b/traces.jsonl` | Per-agent-per-round full traces (1500 records): system/user prompts, raw model output, parsed reasoning text, parsed price action, latency, timestamp, repetition index. |
 
-The GATE-5 canonical dataset ($n=30$ reps × $n=5$ agents × 50 rounds) is reserved for the journal-version release per the team's open-methodology + delayed-data-release policy; the SciPy verifiers at `verifiers/` reproduce all GATE-5 analytic outputs from the locked private traces on request to `team@hharesearch.org`.
+The GATE-5 canonical dataset ($n=30$ reps × $n=5$ agents × 50 rounds) also ships at `results-canonical/stage2b-gate-merged/EXP-GATE-5-2b/{results.json, traces.jsonl}`. SciPy verifiers at `verifiers/` reproduce both GATE-2 and GATE-5 analytic outputs from a clean clone.
 
 ## Reproducing the analysis
 

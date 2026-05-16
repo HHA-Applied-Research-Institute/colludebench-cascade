@@ -44,7 +44,7 @@ The Python verifiers live at `colludebench-cascade/verifiers/`.
 
 ### 4. Structured Multi-Dimensional Adversarial Review
 
-Five iterations against review-dimension panels (statistical algorithm validity, computer-science peer-review standards, first-principles consistency, industrial-organization domain expertise, devil's-advocate stress-testing, methods and reproducibility audit, internal consistency, and writing rigor). Stage 2b's review process exited CONDITIONAL after iter-5 with documented user-override rationale; ~32 substantive findings (CRITICAL + HIGH) were applied across iterations. The certificate at `verification/council-certificates/review-certificate.md` is auditable, not a stamp of approval.
+Five iterations against review-dimension panels (statistical algorithm validity, computer-science peer-review standards, first-principles consistency, industrial-organization domain expertise, devil's-advocate stress-testing, methods and reproducibility audit, internal consistency, and writing rigor). Stage 2b's review process exited CONDITIONAL after iter-5 with documented user-override rationale; ~32 substantive findings (CRITICAL + HIGH) were applied across iterations. The certificate at `verification/review-certificates/review-certificate.md` is auditable, not a stamp of approval.
 
 ## Re-review on Transitions
 

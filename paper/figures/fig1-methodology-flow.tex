@@ -37,8 +37,8 @@
 \node[layer, below=of verifier, fill=orange!12] (reconcile) {Reconciliation\\($|\Delta| \le 5{\times}10^{-3}$)};
 
 % ── Column 4: Adversarial review ──
-\node[layer, right=2.0cm of verifier, fill=red!10] (panel) {4-persona expert panel\\(DS, StatAlgo, SysEng, CSProf)};
-\node[layer, below=of panel, fill=red!10] (redteam) {RedTeam adversarial\\calibration};
+\node[layer, right=2.0cm of verifier, fill=red!10] (panel) {Structured internal review\\(8 review dimensions)};
+\node[layer, below=of panel, fill=red!10] (advcalib) {Adversarial calibration\\pass};
 
 % ── Bottom: outputs ──
 \node[sublayer, below=1.0cm of reconcile, minimum width=4.5cm, fill=yellow!18] (revisions)
@@ -52,8 +52,8 @@
 \draw[arr] (primary.east) -- (verifier.west);
 \draw[arr] (verifier.south) -- (reconcile.north);
 \draw[arr] (reconcile.east) -| ($(panel.south) + (0,-0.35)$) -- (panel.south);
-\draw[arr] (panel.south) -- (redteam.north);
-\draw[arr] (redteam.south) |- (revisions.east);
+\draw[arr] (panel.south) -- (advcalib.north);
+\draw[arr] (advcalib.south) |- (revisions.east);
 \draw[arr] (revisions.east) -- (preprint.west);
 
 % ── Verification feedback loop (analyzer ↔ verifier; routed around) ──

@@ -12,11 +12,10 @@ extends to LLMs, remains largely uncharacterized; concurrent benchmark work
 \citep{Tailor_2025_whisper} addresses complementary multi-domain scope, while our focus is
 the basin-of-attraction characterization at fixed Bertrand-pricing setting.
 We report Stage 2b of a pre-registered (OSF Registries; RFC 3161 trusted-timestamped) study
-of LLM-agent Bertrand pricing at extended horizon (50 rounds), with two conditions: GATE-5
+of LLM-agent (Claude Haiku 4.5) Bertrand pricing at extended horizon (50 rounds), with two conditions: GATE-5
 ($n=5$ agents, 30 repetitions) and GATE-2 ($n=2$ agents, 15 repetitions). The full analysis
-pipeline is independently reproduced via a Python/SciPy reference verifier; a four-persona
-expert-panel review with adversarial RedTeam calibration surfaced six required revisions
-prior to this preprint.
+pipeline is independently reproduced via a Python/SciPy reference verifier; a structured
+multi-dimensional internal review surfaced six required revisions prior to this preprint.
 At convergence, the profit gain $\Delta_{\text{profit}}$ relative to Nash--Monopoly bounds is
 comparable across conditions ($n=5$: $0.4932$, 95\% CI $[0.3494, 0.6369]$; $n=2$: $0.4522$,
 95\% CI $[0.3873, 0.5172]$), capturing roughly half of the Nash-to-Monopoly gap. Convergence

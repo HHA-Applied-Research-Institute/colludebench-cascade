@@ -16,13 +16,13 @@ from pathlib import Path
 import numpy as np
 from scipy.stats import fisher_exact
 
-# Resolve repo root: script lives at pilot/admin/verification/<script>; three
+# Resolve repo root: script lives at colludebench-cascade/verifiers/<script>; two
 # levels up from the script gives the repo root, regardless of host or user.
 # Override via STAGE2B_REPO env var if running outside the repo.
-REPO = os.environ.get("STAGE2B_REPO") or str(Path(__file__).resolve().parents[3])
-GATE2_RESULTS = f"{REPO}/pilot/results/stage2b-gate-merged-2026-04-25/EXP-GATE-2-2b/results.json"
-GATE2_TRACES = f"{REPO}/pilot/results/stage2b-gate-merged-2026-04-25/EXP-GATE-2-2b/traces.jsonl"
-GATE5_RESULTS = f"{REPO}/pilot/results/stage2b-gate-2026-04-15/EXP-GATE-5-2b/results.json"
+REPO = os.environ.get("STAGE2B_REPO") or str(Path(__file__).resolve().parents[2])
+GATE2_RESULTS = f"{REPO}/colludebench-cascade/results-canonical/stage2b-gate-merged/EXP-GATE-2-2b/results.json"
+GATE2_TRACES = f"{REPO}/colludebench-cascade/results-canonical/stage2b-gate-merged/EXP-GATE-2-2b/traces.jsonl"
+GATE5_RESULTS = f"{REPO}/colludebench-cascade/results-canonical/stage2b-gate-merged/EXP-GATE-5-2b/results.json"
 
 # Calvano model parameters (from pilot/runner/demand-model.ts CALVANO_DEFAULTS)
 A = 2.0

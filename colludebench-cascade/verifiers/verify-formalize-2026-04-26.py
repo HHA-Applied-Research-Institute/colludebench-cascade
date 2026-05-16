@@ -30,10 +30,10 @@ from sklearn.cluster import KMeans
 from sklearn.linear_model import LinearRegression
 from sklearn.mixture import GaussianMixture
 
-REPO = os.environ.get("STAGE2B_REPO") or str(Path(__file__).resolve().parents[3])
-GATE5_TRACES = f"{REPO}/pilot/results/stage2b-gate-2026-04-15/EXP-GATE-5-2b/traces.jsonl"
-GATE2_TRACES = f"{REPO}/pilot/results/stage2b-gate-merged-2026-04-25/EXP-GATE-2-2b/traces.jsonl"
-ANALYZER_OUT = f"{REPO}/pilot/admin/verification/formalize-addendum1-output-2026-04-26.json"
+REPO = os.environ.get("STAGE2B_REPO") or str(Path(__file__).resolve().parents[2])
+GATE5_TRACES = f"{REPO}/colludebench-cascade/results-canonical/stage2b-gate-merged/EXP-GATE-5-2b/traces.jsonl"
+GATE2_TRACES = f"{REPO}/colludebench-cascade/results-canonical/stage2b-gate-merged/EXP-GATE-2-2b/traces.jsonl"
+ANALYZER_OUT = f"{REPO}/colludebench-cascade/results-canonical/stage2b-gate-merged/formalize-addendum1-output-2026-04-26.json"
 
 A, A0, MU, COST, BETA = 2.0, 0.0, 0.25, 1.0, 100.0
 

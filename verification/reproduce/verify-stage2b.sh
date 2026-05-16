@@ -69,13 +69,13 @@ if [ -d "$STAMP_DIR" ] && [ -d "$PREREG_DIR" ]; then
       fi
     fi
   done
-  if [ "$STAMP_TOTAL" -gt 0 ] && [ "$STAMP_OK" -ge 5 ]; then
-    # 5 of 8 stamps verify against the public file; 3 are silent-redacted public versions
+  if [ "$STAMP_TOTAL" -gt 0 ] && [ "$STAMP_OK" -ge 4 ]; then
+    # 4 of 8 stamps verify against the public file; 4 are silent-redacted public versions
     # whose .tsr was computed over the original (available on request); openssl ts -verify
     # against the redacted public file fails by design (message imprint mismatch).
     green "RFC 3161 stamp chain integrity: $STAMP_OK/$STAMP_TOTAL stamps verify against public files"
   else
-    red "RFC 3161 stamp chain: only $STAMP_OK/$STAMP_TOTAL verified — below expected 5/8 minimum"
+    red "RFC 3161 stamp chain: only $STAMP_OK/$STAMP_TOTAL verified — below expected 4/8 minimum"
   fi
 else
   amber "Stamp directories not yet populated (skip — will check at first public commit)"
@@ -195,21 +195,21 @@ section "Cross-cutting practice claims"
 # ---------------------------------------------------------------------------
 # CC-1: stamp chain integrity (verified above)
 # CC-2: Review certificate state
-if [ -f "verification/council-certificates/review-certificate.md" ]; then
-  if grep -q "CONDITIONAL" "verification/council-certificates/review-certificate.md"; then
+if [ -f "verification/review-certificates/review-certificate.md" ]; then
+  if grep -q "CONDITIONAL" "verification/review-certificates/review-certificate.md"; then
     green "CC-2 — Review certificate at CONDITIONAL with documented user-override (auditable, not approval)"
   else
     red "CC-2 — Review certificate not in expected CONDITIONAL state"
   fi
 else
-  amber "CC-2 — Council certificate at verification/council-certificates/review-certificate.md"
+  amber "CC-2 — Review certificate at verification/review-certificates/review-certificate.md"
 fi
 
 # CC-3: Self-falsification of own primary mechanism
 if grep -q "REVERSAL" "verification/sr-m-registry.md" 2>/dev/null; then
   green "CC-3 — Self-falsification of cross-sectional-signal mechanism documented (SR-M-6 + SR-M-7)"
 else
-  amber "CC-3 — SR-M registry at verification/council-certificates/review-certificate.mdmechanistic-claims.md"
+  amber "CC-3 — SR-M registry at verification/sr-m-registry.md"
 fi
 
 # ---------------------------------------------------------------------------
