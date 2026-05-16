@@ -1,0 +1,69 @@
+{
+  "addendum": "5",
+  "stamp_date": "2026-05-03",
+  "bootstrap_B": 10000,
+  "bootstrap_seed": 42,
+  "inputs": {
+    "GATE_5": "pilot/results/stage2b-gate-2026-04-15/EXP-GATE-5-2b/traces.jsonl",
+    "GATE_2": "pilot/results/stage2b-gate-merged-2026-04-25/EXP-GATE-2-2b/traces.jsonl"
+  },
+  "conditions": {
+    "GATE-5": {
+      "n_cot_rounds": 7500,
+      "literal_raw": {
+        "mean": 1.5786666666666667,
+        "ci95": [
+          1.5498666666666667,
+          1.6074666666666666
+        ]
+      },
+      "coref_raw": {
+        "mean": 0.45386666666666664,
+        "ci95": [
+          0.4397333333333333,
+          0.46826666666666666
+        ]
+      },
+      "per_other_agent_rate": {
+        "mean": 0.5081333333333333,
+        "ci95": [
+          0.49966666666666665,
+          0.5164
+        ]
+      },
+      "n_other_agents": 4
+    },
+    "GATE-2": {
+      "n_cot_rounds": 1500,
+      "literal_raw": {
+        "mean": 1.7533333333333334,
+        "ci95": [
+          1.6873333333333334,
+          1.8186666666666667
+        ]
+      },
+      "coref_raw": {
+        "mean": 1.2006666666666668,
+        "ci95": [
+          1.134,
+          1.2686666666666666
+        ]
+      },
+      "per_other_agent_rate": {
+        "mean": 2.954,
+        "ci95": [
+          2.8646666666666665,
+          3.0446666666666666
+        ]
+      },
+      "n_other_agents": 1
+    }
+  },
+  "decision_rule": {
+    "primary_per_other_agent": "DISJOINT_GATE2_HIGHER_REVERSED",
+    "secondary_literal_raw": "DISJOINT_GATE2_HIGHER_REVERSED",
+    "secondary_coref_raw": "DISJOINT_GATE2_HIGHER_REVERSED",
+    "combined": "B.1 REVERSAL — §5.2 adds explicit acknowledgment that per-other-agent CoT-reference rate at n=5 is BELOW rate at n=2, against reading (a); §5.2.1 reports the reversal"
+  },
+  "generated_at": "2026-05-04T19:35:48.868Z"
+}

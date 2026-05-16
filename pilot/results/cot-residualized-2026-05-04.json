@@ -1,0 +1,70 @@
+{
+  "addendum": "6",
+  "stamp_date": "2026-05-04",
+  "bootstrap_B": 10000,
+  "bootstrap_seed": 42,
+  "inputs": {
+    "GATE_5": "colludebench-cascade/results-canonical/stage2b-gate-merged/EXP-GATE-5-2b/traces.jsonl",
+    "GATE_2": "colludebench-cascade/results-canonical/stage2b-gate-merged/EXP-GATE-2-2b/traces.jsonl"
+  },
+  "regression": {
+    "a": 0.038239028802435904,
+    "b": 0.004498660709032853,
+    "r_squared": 0.013315931566751999,
+    "n": 9000
+  },
+  "conditions": {
+    "GATE-5": {
+      "n_records": 7500,
+      "mean_words": 195.1468,
+      "ci95_words": [
+        194.44146666666666,
+        195.87293333333332
+      ],
+      "mean_rate": 0.5081333333333333,
+      "ci95_rate": [
+        0.4997,
+        0.5164
+      ],
+      "mean_residual": -0.40800493712262614,
+      "ci95_residual": [
+        -0.4162931248619844,
+        -0.39978672473718063
+      ],
+      "mean_rate_per_1000_words": 2.6041541347281183,
+      "ci95_rate_per_1000_words": [
+        2.5623862941797517,
+        2.6450888609901053
+      ]
+    },
+    "GATE-2": {
+      "n_records": 1500,
+      "mean_words": 194.666,
+      "ci95_words": [
+        193.182,
+        196.16066666666666
+      ],
+      "mean_rate": 2.954,
+      "ci95_rate": [
+        2.8646666666666665,
+        3.0453333333333332
+      ],
+      "mean_residual": 2.0400246856129387,
+      "ci95_residual": [
+        1.9513271629931568,
+        2.1295049751961024
+      ],
+      "mean_rate_per_1000_words": 15.116733203279276,
+      "ci95_rate_per_1000_words": [
+        14.658547476538708,
+        15.578073120704877
+      ]
+    }
+  },
+  "decision_rule": {
+    "primary_residual": "DISJOINT_GATE2_HIGHER",
+    "secondary_rate_per_1000_words": "DISJOINT_GATE2_HIGHER",
+    "combined": "REVERSAL SURVIVES RESIDUALIZATION — refined reading (a') strengthened: per-peer attention density is denser at n=2 even controlling for talk volume"
+  },
+  "generated_at": "2026-05-04T19:36:09.878Z"
+}
