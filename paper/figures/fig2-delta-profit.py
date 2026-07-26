@@ -1,6 +1,6 @@
 """Figure 2 — Δ_profit at convergence per condition with 95% CIs and convergence-rate annotation.
 
-Encodes anti-overlap rules from AppliedResearch matplotlib template:
+Encodes anti-overlap rules from our figure template:
   - figsize floor (10, 6)
   - legend anchored OUTSIDE plot area when present
   - tight_layout + manual subplot_adjust

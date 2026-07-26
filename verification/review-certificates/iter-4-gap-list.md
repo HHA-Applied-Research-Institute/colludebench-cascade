@@ -5,7 +5,7 @@
  **Branch:** `<dev-branch>`
  **Input commit (state reviewed):** the Haedar pre-review edit chain applied on top of the §5.2.1 REVERSAL commit
  **Output commits (state after iter-5 input fix batch):** the iter-4 batch-1 commit (Addendum #6 + analyzer + .tsr stamp + result) + the iter-4 batch-2 commit (Tier 1+2 LaTeX + SR-M registry) + `<this-commit>` (Tier 3 #4+#5 promotions)
- **Reviewer panel:** 6 agents per AppliedResearch Review.md spec — Academic, methods-and-reproducibility review, R5-DevilsAdvocate, Consistency, R4-DomainExpertise, R8-WritingRigor
+ **Reviewer panel:** 6 independent reviewers, each with a distinct role — Academic, Methods & Reproducibility, Devil's Advocate, Consistency, Domain Expertise, Writing Rigor
  **Aggregate severity:** 1 CRITICAL + 11 HIGH + 12 MEDIUM + 7 LOW
  **Verdict:** NOT CLEAN — fix batch executed; iter-5 to follow
  
@@ -97,7 +97,7 @@
  
  ## Independent verification paths (for Haedar)
  
- 1. **Reviewer panel composition** — see this file §"Per-reviewer verdicts"; each reviewer was a `general-purpose` Agent invocation with focused prompt covering specific reviewer role + access to the modified preprint sections. Spawn pattern: 6 parallel `Agent` calls in one message.
+ 1. **Reviewer panel composition** — see this file §"Per-reviewer verdicts". Each reviewer worked independently from a role-specific brief, with access to the modified preprint sections, and the six reviews were conducted in parallel.
  
  2. **Iter-4 input state** — `git checkout ee22fa1`; `cat preprint/sections/05-discussion.tex` and review §5.2 + §5.2.1.
  

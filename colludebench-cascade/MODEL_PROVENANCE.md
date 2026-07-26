@@ -39,10 +39,10 @@ Not all trace files include explicit `model` and `provider` fields in the JSONL 
 | Category E (7 experiments, Apr 3) | Claude Haiku | Anthropic API | Inference.ts source, pre-multi-provider | No model field (pre-fix) |
 | Category A (9 experiments, Apr 4) | Claude Haiku | Anthropic API | Same | No model field (pre-fix) |
 | Category B — Claude runs (Apr 5-6) | Claude Haiku | Anthropic API | ACTIVE_MODEL export in Inference.ts | `model=claude-haiku-4-5-20251001`, `provider=anthropic` (post-fix) |
-| Category B — Ollama runs (Apr 5) | Llama 3.1 8B | Ollama (local GPU) | Text message: "Using ollama now with my gpu" | Stopped at rep 8/10, patches created to identify |
+| Category B — Ollama runs (Apr 5) | Llama 3.1 8B | Ollama (local GPU) | Run-operator confirmation | Stopped at rep 8/10, patches created to identify |
 | Category B — Groq runs (if any) | Llama 3.1 8B Instant | Groq API (free tier) | Inference.ts GROQ_MODELS config | To be confirmed — may not have been used |
 
-**Confirmation:** Ahmed's Inference layer exports `ACTIVE_PROVIDER` and `ACTIVE_MODEL` constants resolved at module load time from the `INFERENCE_PROVIDER` env var. Newer runs (post Apr 5) include `model` and `provider` fields in traces. Earlier runs do not. Ahmed confirmed via text that Ollama B1 data was stopped at rep 8/10 due to quality difference and re-run with Claude.
+**Confirmation:** Ahmed's Inference layer exports `ACTIVE_PROVIDER` and `ACTIVE_MODEL` constants resolved at module load time from the `INFERENCE_PROVIDER` env var. Newer runs (post Apr 5) include `model` and `provider` fields in traces. Earlier runs do not. The Ollama B1 data was stopped at rep 8/10 on a quality difference and re-run with Claude, confirmed by the run operator.
 
 ## Cross-Model Data Separation
 
@@ -50,7 +50,7 @@ Not all trace files include explicit `model` and `provider` fields in the JSONL 
 |-------|--------------|-------------|-------------------|
 | Claude Haiku | All three | A1-A9, B1-B7, C1-C6, D1-D3, E1-E7, F1-F4, G1-G2, H1 | Source code confirmation + `tier=fast` field |
 | Claude Sonnet | Haedar | A1, A2, B1, B3, D1, E6, F1 (escalation) + deception ladder | Separate directory names (`sonnet-escalation-*`) |
-| Llama 3.1 8B (Ollama) | Ahmed | B1 partial (reps 1-8, stopped) | Text message confirmation, patches created |
+| Llama 3.1 8B (Ollama) | Ahmed | B1 partial (reps 1-8, stopped) | Run-operator confirmation, patches created |
 
 ## Recommendation
 

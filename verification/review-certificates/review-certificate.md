@@ -2,7 +2,7 @@
  
  **Project:** ColludeBench Stage 2b preprint — Schmidt Sciences Trustworthy AI RFP submission evidence
  **Branch:** `<dev-branch>` at commit (post-iter-5 fix) — see `git log` for tip
- **Iterations:** 5 (structured review workflow per AppliedResearch Review.md spec)
+ **Iterations:** 5 (structured multi-reviewer workflow)
  **Final status:** CONDITIONAL — user judgment ratified
  **Convergence:** NOT PROVEN under the two-in-a-row criterion (iter-4 NOT clean + iter-5 NOT clean by formal structured-review standard); user override invoked per Schmidt-RFP-focus filter (preprint serves as supporting evidence to the proposal, not as standalone academic publication; remaining issues are venue-conditional polish, not RFP submission gates).
  **Reviewed by:** Across iters 1-5: academic methodology, methods-and-reproducibility audit, devil's-advocate stress-testing, internal consistency, industrial-organization domain expertise, writing rigor (iters 1-4); plus iter-5 eight-dimension review (statistical algorithm validity, computer-science peer-review standards, first-principles consistency, industrial-organization domain expertise, devil's-advocate stress-testing, methods and reproducibility audit, internal consistency, writing rigor). Plus an independent multi-dimensional review run by co-author Haedar between iter-4 and iter-5.
